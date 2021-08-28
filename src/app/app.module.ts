@@ -1,18 +1,84 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+//Angular material imports
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { AdminComponent } from './components/admin/admin.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ManageTutorsComponent } from './components/admin/manage-tutors/manage-tutors.component';
+import { RefundsComponent } from './components/admin/refunds/refunds.component';
+import { AdminQuestionComponent } from './components/admin/admin-question/admin-question.component';
+import { PaymentsComponent } from './components/admin/payments/payments.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminComponent,
+    DashboardComponent,
+    ManageTutorsComponent,
+    RefundsComponent,
+    AdminQuestionComponent,
+    PaymentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatListModule,
+    MatToolbarModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatChipsModule,
+    MatCardModule,
+    MatDividerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatExpansionModule,
+    NgxMatNativeDateModule,
+    MatSelectModule,
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
