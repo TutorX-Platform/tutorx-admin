@@ -38,6 +38,7 @@ import { ManageTutorsComponent } from './components/admin/manage-tutors/manage-t
 import { RefundsComponent } from './components/admin/refunds/refunds.component';
 import { AdminQuestionComponent } from './components/admin/admin-question/admin-question.component';
 import { PaymentsComponent } from './components/admin/payments/payments.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { PaymentsComponent } from './components/admin/payments/payments.componen
     ManageTutorsComponent,
     RefundsComponent,
     AdminQuestionComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
