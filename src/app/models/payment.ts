@@ -11,4 +11,6 @@ export interface Payment {
   studentImage: string;
   tutorName: string;
   studentName: string;
+  questionTitle: string;
+
 }

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DashboardService} from "../../../services/dashboard.service";
+import {Payment} from "../../../models/payment";
+import * as constants from '../../../models/constants';
 
 @Component({
   selector: 'app-payments',
@@ -8,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class PaymentsComponent implements OnInit {
 
   now = new Date();
-  months =[
+  payments: Payment[] = [];
+  dummyAvatar = constants.dummy_profile_picture;
+
+  months = [
     {
       code: 'JAN',
       name: 'January'
@@ -22,9 +28,16 @@ export class PaymentsComponent implements OnInit {
       name: 'March'
     }
   ]
-  constructor() { }
+
+  constructor(private dashboardService: DashboardService) {
+  }
 
   ngOnInit(): void {
+    this.dashboardService.findPayments().valueChanges().subscribe(
+      (res) => {
+        this.payments = res;
+      }
+    )
   }
 
 }

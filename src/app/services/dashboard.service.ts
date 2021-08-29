@@ -69,4 +69,10 @@ export class DashboardService {
     const data = {isApproved:true}
     return refundRef.update(data);
   }
+
+  findPayments(){
+    // @ts-ignore
+    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments,ref=>ref.where('fee','!=',''));
+    return paymentRef;
+  }
 }
