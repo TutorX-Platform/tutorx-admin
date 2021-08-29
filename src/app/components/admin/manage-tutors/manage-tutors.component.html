@@ -7,14 +7,14 @@
 
   <div class="main-container" fxLayout="row">
     <div class="request-container" fxLayout="column" fxLayoutGap="24px">
-      <div *ngFor="let num of numbers">
+      <div *ngFor="let tutor of tutors">
         <div fxLayout="row" class="request-card" fxLayoutAlign="space-between center">
           <div fxLayout="row">
             <div fxLayout="column" fxLayoutAlign="start start">
               <img src="../../../../assets/images/profile.jpg" alt="Avatar" class="avatar">
             </div>
             <div class="info" fxLayout="column" fxLayoutAlign="start start">
-              <div class="title">Daria Jamey</div>
+              <div class="title">{{tutor.firstName}}</div>
               <div fxLayout="row wrap" fxLayoutAlign="start center" class="sub-title" fxLayoutGap="16px grid">
                 <div class="rating" fxLayout="row">
                   <mat-icon [ngClass]="rating >= 1 ? 'star star--selected' : 'star'">star</mat-icon>

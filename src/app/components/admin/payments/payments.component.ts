@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardService} from "../../../services/dashboard.service";
 import {Payment} from "../../../models/payment";
 import * as constants from '../../../models/constants';
+import {MatDialog} from "@angular/material/dialog";
+import {ProgressDialogComponent} from "../../shared/progress-dialog/progress-dialog.component";
 
 @Component({
   selector: 'app-payments',
@@ -29,15 +31,21 @@ export class PaymentsComponent implements OnInit {
     }
   ]
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.dashboardService.findPayments().valueChanges().subscribe(
-      (res) => {
-        this.payments = res;
-      }
-    )
+    const progressDialog = this.dialog.open(ProgressDialogComponent, constants.getProgressDialogData());
+    progressDialog.afterOpened().subscribe(() => {
+      this.dashboardService.findPayments().valueChanges().subscribe(
+        (res) => {
+          this.payments = res;
+          progressDialog.close();
+        }, () => {
+          progressDialog.close();
+        }
+      )
+    })
   }
 
 }
