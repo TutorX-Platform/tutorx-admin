@@ -34,12 +34,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {AdminComponent} from './components/admin/admin.component';
-import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
-import {ManageTutorsComponent} from './components/admin/manage-tutors/manage-tutors.component';
-import {RefundsComponent} from './components/admin/refunds/refunds.component';
-import {AdminQuestionComponent} from './components/admin/admin-question/admin-question.component';
-import {PaymentsComponent} from './components/admin/payments/payments.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ManageTutorsComponent } from './components/admin/manage-tutors/manage-tutors.component';
+import { RefundsComponent } from './components/admin/refunds/refunds.component';
+import { AdminQuestionComponent } from './components/admin/admin-question/admin-question.component';
+import { PaymentsComponent } from './components/admin/payments/payments.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 import {AngularFireModule} from 'angularfire2';
 import {environment} from "../environments/environment";
@@ -57,6 +58,7 @@ import {AngularFireStorageModule} from 'angularfire2/storage'
     RefundsComponent,
     AdminQuestionComponent,
     PaymentsComponent,
+    AuthComponent,
     ProgressDialogComponent,
 
   ],
