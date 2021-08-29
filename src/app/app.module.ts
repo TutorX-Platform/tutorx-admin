@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
 //Angular material imports
 import {MatButtonModule} from '@angular/material/button';
@@ -25,19 +25,28 @@ import {
 } from '@angular-material-components/datetime-picker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
+import {ProgressDialogComponent} from './components/shared/progress-dialog/progress-dialog.component';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { AdminComponent } from './components/admin/admin.component';
-import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { ManageTutorsComponent } from './components/admin/manage-tutors/manage-tutors.component';
-import { RefundsComponent } from './components/admin/refunds/refunds.component';
-import { AdminQuestionComponent } from './components/admin/admin-question/admin-question.component';
-import { PaymentsComponent } from './components/admin/payments/payments.component';
+import {AdminComponent} from './components/admin/admin.component';
+import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
+import {ManageTutorsComponent} from './components/admin/manage-tutors/manage-tutors.component';
+import {RefundsComponent} from './components/admin/refunds/refunds.component';
+import {AdminQuestionComponent} from './components/admin/admin-question/admin-question.component';
+import {PaymentsComponent} from './components/admin/payments/payments.component';
+
+import {AngularFireModule} from 'angularfire2';
+import {environment} from "../environments/environment";
+import {AngularFirestoreModule} from 'angularfire2/firestore'
+import {AngularFireAuthModule} from 'angularfire2/auth'
+import {AngularFireStorageModule} from 'angularfire2/storage'
+
 
 @NgModule({
   declarations: [
@@ -47,12 +56,18 @@ import { PaymentsComponent } from './components/admin/payments/payments.componen
     ManageTutorsComponent,
     RefundsComponent,
     AdminQuestionComponent,
-    PaymentsComponent
+    PaymentsComponent,
+    ProgressDialogComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'angularfs'),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     FlexLayoutModule,
     MatIconModule,
     MatListModule,
@@ -83,4 +98,5 @@ import { PaymentsComponent } from './components/admin/payments/payments.componen
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

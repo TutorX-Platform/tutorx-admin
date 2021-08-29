@@ -8,4 +8,7 @@ export interface Payment {
   paidTime: Date;
   paidCurrency: string;
   tutorId: string;
+  studentImage: string;
+  tutorName: string;
+  studentName: string;
 }

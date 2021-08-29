@@ -4,19 +4,19 @@
       <div fxLayout="row" fxLayoutAlign="space-between center" class="top-bar">
         <div fxLayout="column" fxLayoutAlign="start">
           <div class="title">Total Users</div>
-          <div class="number">40k</div>
+          <div class="number">{{totalUsers}}</div>
         </div>
         <div fxLayout="column" fxLayoutAlign="start">
           <div class="title">Total Questoins</div>
-          <div class="number">1000</div>
+          <div class="number">{{totalQuestions}}</div>
         </div>
         <div fxLayout="column" fxLayoutAlign="start">
           <div class="title">In progress</div>
-          <div class="number">1.5k</div>
+          <div class="number">{{inProgressQuestions}}</div>
         </div>
         <div fxLayout="column" fxLayoutAlign="start">
           <div class="title">Total Completed</div>
-          <div class="number">1.5k</div>
+          <div class="number">{{completedQuestions}}</div>
         </div>
       </div>
       <div class="recent-chats">
@@ -25,25 +25,34 @@
           <div class="view-all">View All</div>
         </div>
         <div fxLayout="column" class="chat-info-box-container" fxLayoutGap="8px">
-          <div *ngFor="let num of numbers">
+          <div *ngFor="let chat of recentChats">
             <div fxLayout="row" class="chat-info-box" fxLayoutAlign="space-between center">
               <div fxLayout="row" fxLayoutGap="14px" fxLayoutAlign="none center">
-                <div>
+                <div
+                  *ngIf="chat.studentProfile !==null && chat.studentProfile !=='' && chat.studentProfile !==undefined">
+                  <img [src]=chat.studentProfile alt="Avatar" class="avatar">
+                </div>
+                <div
+                  *ngIf="chat.studentProfile ===null && chat.studentProfile ==='' && chat.studentProfile ===undefined">
                   <img src="../../../../assets/images/profile.jpg" alt="Avatar" class="avatar">
                 </div>
                 <div>
                   <mat-icon class="material-icons-outlined icon">arrow_forward</mat-icon>
                 </div>
-                <div>
+                <div *ngIf="chat.tutorProfile !==null && chat.tutorProfile !=='' && chat.tutorProfile !==undefined">
+                  <img [src]=chat.tutorProfile alt="Avatar" class="avatar">
+                </div>
+                <div *ngIf="chat.tutorProfile ===null || chat.tutorProfile ==='' || chat.tutorProfile ===undefined">
                   <img src="../../../../assets/images/profile.jpg" alt="Avatar" class="avatar">
                 </div>
                 <div class="chat-name">
-                  Principles of Ux Design
+                  {{chat.questionTitle}}
                 </div>
               </div>
-              <div fxLayout="row" fxLayoutGap="45px" fxLayoutAlign="end center" fxLayout.lt-lg="column" fxLayoutGap.lt-lg="8px" fxLayoutAlign="center center">
+              <div fxLayout="row" fxLayoutGap="45px" fxLayoutAlign="end center" fxLayout.lt-lg="column"
+                   fxLayoutGap.lt-lg="8px" fxLayoutAlign="center center">
                 <div class="c-chip c-chip--open invert-false">Open</div>
-                <button mat-raised-button color="accent" style="color:white;">
+                <button (click)="onViewChat(chat.id)" mat-raised-button color="accent" style="color:white;">
                   View Chat
                   <mat-icon class="material-icons-outlined">
                     chat
@@ -60,27 +69,32 @@
       <div fxLayout="row" fxLayoutAlign="start center" class="top-bar">
         <div fxLayout="column" fxLayoutAlign="start">
           <div class="title">Total Earings</div>
-          <div class="number">$ 1,520.00</div>
+          <div class="number">{{totalEarnings}} USD</div>
         </div>
       </div>
       <div fxLayout="column" class="recent-payments" fxLayoutAlign="start none" fxLayoutGap="16px">
         <div fxLayout="row" fxLayoutAlign="start start" class="title">Recent payments</div>
         <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="8px">
-          <div *ngFor="let num of numbers">
+          <div *ngFor="let payment of payments">
             <div class="payments" fxLayoutAlign="space-around center">
-              <div>
+              <div
+                *ngIf="payment.studentImage !==null && payment.studentImage !=='' && payment.studentImage !==undefined">
+                <img [src]=payment.studentImage alt="Avatar" class="avatar">
+              </div>
+              <div
+                *ngIf="payment.studentImage ===null || payment.studentImage ==='' || payment.studentImage ===undefined">
                 <img src="../../../../assets/images/profile.jpg" alt="Avatar" class="avatar">
               </div>
               <div class="details">
                 <div class="from">
-                  Therese Rechards
+                  {{payment.studentName}}
                 </div>
                 <div class="to">
-                  to James Spayder
+                  to {{payment.tutorName}}
                 </div>
               </div>
               <div class="amount">
-                $ 00.00
+                {{payment.fee}} USD
               </div>
             </div>
           </div>
