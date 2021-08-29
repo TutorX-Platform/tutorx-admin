@@ -56,4 +56,17 @@ export class DashboardService {
     }
     this.angularFirestoreService.collection(constants.collections.message).doc(chatId).collection(constants.collections.chats).add(data);
   }
+
+  findRefunds() {
+    // @ts-ignore
+    const refundRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.refunds);
+    return refundRef;
+  }
+
+  approveRefund(refundId:string) {
+    // @ts-ignore
+    const refundRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.refunds).doc(refundId);
+    const data = {isApproved:true}
+    return refundRef.update(data);
+  }
 }

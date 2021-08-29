@@ -3,6 +3,7 @@ import * as constants from '../models/constants';
 import {HttpClient} from "@angular/common/http";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import * as systemMessages from "../models/system-messages";
+import { MessageDialogComponent } from '../components/shared/message-dialog/message-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -29,15 +30,15 @@ export class UtilService {
     return this.http.get(constants.backend_url.concat(constants.backend_api_resource.time), httpOptions);
   }
 
-  // openDialog(title: string, message: string, type: string) {
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.autoFocus = true;
-  //   dialogConfig.data = {
-  //     title: title,
-  //     message: message,
-  //     type: type,
-  //   }
-  //   return this.dialog.open(MessageDialogComponent, dialogConfig);
-  // }
+  openDialog(title: string, message: string, type: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      title: title,
+      message: message,
+      type: type,
+    }
+    return this.dialog.open(MessageDialogComponent, dialogConfig);
+  }
 
 }
