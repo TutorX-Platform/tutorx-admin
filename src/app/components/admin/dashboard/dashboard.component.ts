@@ -42,10 +42,10 @@ export class DashboardComponent implements OnInit {
       () => {
         this.dashboardService.findStats().valueChanges().subscribe(
           (res) => {
-            console.log(res);
             this.totalEarnings = res.payments;
             this.inProgressQuestions = res.inprogressQuestions;
             this.totalQuestions = res.questionCount;
+            this.completedQuestions = res.completedQuestions;
             this.totalUsers = res.userCount;
             progressDialog.close();
           }
