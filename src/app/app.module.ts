@@ -25,6 +25,7 @@ import {
 } from '@angular-material-components/datetime-picker';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 import {ProgressDialogComponent} from './components/shared/progress-dialog/progress-dialog.component';
 
 
@@ -56,6 +57,7 @@ import { ChatComponent } from './components/shared/chat/chat.component';
 import { CountDownComponent } from './components/shared/count-down/count-down.component';
 import { CustomDropzonePreviewComponent } from './components/shared/custom-dropzone-preview/custom-dropzone-preview.component'
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { MessageRequestComponent } from './components/admin/message-request/message-request.component';
 
 
 @NgModule({
@@ -75,7 +77,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     QuestionCardComponent,
     ChatComponent,
     CountDownComponent,
-    CustomDropzonePreviewComponent
+    CustomDropzonePreviewComponent,
+    MessageRequestComponent
 
   ],
   imports: [
@@ -112,7 +115,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     NgxMatNativeDateModule,
     MatSelectModule,
     MatDatepickerModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

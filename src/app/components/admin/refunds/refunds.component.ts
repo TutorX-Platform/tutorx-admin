@@ -4,9 +4,10 @@ import {Refund} from "../../../models/refunds";
 import {DashboardService} from "../../../services/dashboard.service";
 import {ProgressDialogComponent} from "../../shared/progress-dialog/progress-dialog.component";
 import * as constants from "../../../models/constants";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {UtilService} from "../../../services/util-service.service";
 import * as systemMessages from '../../../models/system-messages';
+import {MessageRequestComponent} from "../message-request/message-request.component";
 
 @Component({
   selector: 'app-refunds',
@@ -23,8 +24,15 @@ export class RefundsComponent implements OnInit {
   ) {
   }
 
+  // @ts-ignore
+  selectedValue: string;
+  states = [
+    "Recent Payments First",
+    "Old Payments First"
+  ];
+  now = new Date();
   contactForm!: FormGroup;
-  refunds: Refund[] = []
+  refunds: Refund[] = [];
 
   numbers = [1, 2, 3];
   countries = [
@@ -36,6 +44,7 @@ export class RefundsComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.selectedValue = this.states[0];
     this.contactForm = this.fb.group({
       country: [null]
     });
@@ -53,6 +62,11 @@ export class RefundsComponent implements OnInit {
   }
 
   onApprove(refundId: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '650px';
+    // dialogConfig.height = "810px";
+    const dialogRef = this.dialog.open(MessageRequestComponent, dialogConfig);
     this.utilService.openDialog(systemMessages.questionTitles.approveRefundRequest, systemMessages.questionMessages.approveRefundRequest, constants.messageTypes.confirmation).afterClosed().subscribe(
       (res) => {
         if (res) {

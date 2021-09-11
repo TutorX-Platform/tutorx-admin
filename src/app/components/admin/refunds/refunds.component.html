@@ -47,29 +47,31 @@
     </div>
     <div class="filter-container" fxLayout="column">
       <div fxLayout="row" class="filter-title">Filters</div>
-      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" class="search-container">
-        <mat-icon>search</mat-icon>
-        <input matInput class="search" placeholder="Search">
-      </div>
-      <div fxLayout="row" fxLayoutAlign="start center" class="label">Sort by</div>
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <form [formGroup]="contactForm" class="form">
-          <select formControlName="country" class="select">
-            <option [ngValue]="null" disabled>Select Filter</option>
-            <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
-          </select>
-        </form>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="start center" class="label">Tutor</div>
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <form [formGroup]="contactForm" class="form">
-          <select formControlName="country" class="select">
-            <option [ngValue]="null" disabled>Select Filter</option>
-            <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
-          </select>
-        </form>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="start center" class="label">Subjects</div>
+      <mat-form-field appearance="outline" class="my-form-field">
+        <span matPrefix>
+          <mat-icon>search</mat-icon> &nbsp;&nbsp;
+        </span>
+        <input matInput type="search" placeholder="Search Requests">
+      </mat-form-field>
+      <div class="label">Sort</div>
+      <mat-form-field appearance="outline" class="my-form-field">
+        <mat-select [(ngModel)]="selectedValue" placeholder="Select">
+          <mat-option *ngFor="let state of states" [value]="state">
+            {{state}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="start center" class="label">Type</div>
+      <mat-radio-group aria-label="Select an option" fxLayout="row" fxLayoutGap="8px">
+        <mat-radio-button value="1">Refund</mat-radio-button>
+        <mat-radio-button value="2">Cancellation</mat-radio-button>
+      </mat-radio-group>
+      <div fxLayout="row" fxLayoutAlign="start center" class="label">Created</div>
+      <mat-form-field appearance="outline" class="my-form-field">
+        <input matInput [ngxMatDatetimePicker]="picker" [max]="now" placeholder="DD/MM/YYYY">
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker [hideTime]="true" #picker></ngx-mat-datetime-picker>
+      </mat-form-field>
     </div>
   </div>
 </div>

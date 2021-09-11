@@ -50,28 +50,46 @@
     </div>
     <div class="filter-container" fxLayout="column">
       <div fxLayout="row" class="filter-title">Filters</div>
-      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" class="search-container">
-        <mat-icon>search</mat-icon>
-        <input matInput class="search" placeholder="Search">
-      </div>
+      <mat-form-field appearance="outline" class="my-form-field">
+          <span matPrefix>
+            <mat-icon>search</mat-icon> &nbsp;&nbsp;
+          </span>
+        <input matInput type="search" [formControl]="searchControl">
+      </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="start center" class="label">Sort by</div>
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <form [formGroup]="contactForm" class="form">
-          <select formControlName="country" class="select">
-            <option [ngValue]="null" disabled>Select Filter</option>
-            <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
-          </select>
-        </form>
-      </div>
+      <mat-form-field appearance="outline" class="my-form-field">
+        <mat-select [(ngModel)]="selectedValue" placeholder="Select">
+          <mat-option *ngFor="let state of states" [value]="state">
+            {{state}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="start center" class="label">Tutor</div>
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <form [formGroup]="contactForm" class="form">
-          <select formControlName="country" class="select">
-            <option [ngValue]="null" disabled>Select Filter</option>
-            <option *ngFor="let country of countries" [ngValue]="country.id">{{country.name}}</option>
-          </select>
-        </form>
-      </div>
+      <mat-form-field appearance="outline" class="my-form-field">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip
+            *ngFor="let fruit of selectedTutors"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(fruit)">
+            {{fruit}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Type name"
+            #fruitInput
+            [formControl]="tutorCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let fruit of filteredTutors | async" [value]="fruit">
+            {{fruit}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
   </div>
 

@@ -19,6 +19,7 @@
 @import "components/profile.component";
 @import "components/tutor-payments.components";
 @import "components/progress-dialog.component";
+@import "components/message-request.component";
 
 @mixin app-components($theme) {
     @include question-card-component($theme);
@@ -42,4 +43,5 @@
     @include profile-component($theme);
     @include tutor-payment-component($theme);
     @include progress-dialog-component($theme);
+    @include message-request-component($theme);
 }

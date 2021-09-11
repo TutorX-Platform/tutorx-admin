@@ -1,11 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Student} from "../../../models/student";
 import {DashboardService} from "../../../services/dashboard.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ProgressDialogComponent} from "../../shared/progress-dialog/progress-dialog.component";
 import * as constants from '../../../models/constants';
 import {AddTutorComponent} from "../add-tutor/add-tutor.component";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {MatChipInputEvent} from "@angular/material/chips";
 
 @Component({
   selector: 'app-manage-tutors',
@@ -13,27 +18,43 @@ import {AddTutorComponent} from "../add-tutor/add-tutor.component";
   styleUrls: ['./manage-tutors.component.scss']
 })
 export class ManageTutorsComponent implements OnInit {
+
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  tutorCtrl = new FormControl();
+  filteredTutors: Observable<string[]>;
+  selectedTutors: string[] = [];
+  allTutors: string[] = ['Sandun', 'Tharindu', 'Deeptha', 'Gayan', 'Kasun'];
+
+  // @ts-ignore
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+
   constructor(
     private fb: FormBuilder,
     private dashboardService: DashboardService,
     private dialog: MatDialog
   ) {
+    this.filteredTutors = this.tutorCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allTutors.slice()));
   }
 
+  searchControl = new FormControl();
   contactForm!: FormGroup;
   tutors: Student[] = [];
   rating = 3;
 
   numbers = [1, 2, 3];
-  countries = [
-    {id: 1, name: "United States"},
-    {id: 2, name: "Australia"},
-    {id: 3, name: "Canada"},
-    {id: 4, name: "Brazil"},
-    {id: 5, name: "England"}
+  // @ts-ignore
+  selectedValue: string;
+  states = [
+    "Active",
+    "Inactive",
   ];
 
   ngOnInit(): void {
+    this.selectedValue = this.states[0];
     this.contactForm = this.fb.group({
       country: [null]
     });
@@ -67,5 +88,39 @@ export class ManageTutorsComponent implements OnInit {
     //     }
     //   }
     // )
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value && this.allTutors.includes(value)) {
+      this.selectedTutors.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.tutorCtrl.setValue(null);
+  }
+
+  remove(fruit: string): void {
+    const index = this.selectedTutors.indexOf(fruit);
+
+    if (index >= 0) {
+      this.selectedTutors.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.selectedTutors.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.tutorCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allTutors.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
 }

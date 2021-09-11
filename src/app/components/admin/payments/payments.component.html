@@ -55,7 +55,7 @@
       <div fxLayout="column" fxLayoutAlign="start stretch">
         <div class="label">Month</div>
         <mat-form-field appearance="outline" class="my-form-field">
-          <mat-select>
+          <mat-select placeholder="Select Month">
             <mat-option *ngFor="let month of months" [value]="month.code">
               {{month.name}}
             </mat-option>
@@ -65,11 +65,39 @@
       <div fxLayout="column" fxLayoutAlign="start stretch">
         <div class="label">Sort</div>
         <mat-form-field appearance="outline" class="my-form-field">
-          <mat-select>
-            <mat-option *ngFor="let month of months" [value]="month.code">
-              {{month.name}}
+          <mat-select [(ngModel)]="selectedValue" placeholder="Select">
+            <mat-option *ngFor="let state of states" [value]="state">
+              {{state}}
             </mat-option>
           </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="start stretch">
+        <div fxLayout="row" fxLayoutAlign="start center" class="label">Tutor</div>
+        <mat-form-field appearance="outline" class="my-form-field">
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip
+              *ngFor="let fruit of selectedTutors"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(fruit)">
+              {{fruit}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Type name"
+              #fruitInput
+              [formControl]="tutorCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredTutors | async" [value]="fruit">
+              {{fruit}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
       </div>
       <div fxLayout="column" fxLayoutAlign="start stretch">
@@ -79,6 +107,17 @@
           <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
           <ngx-mat-datetime-picker [hideTime]="true" #picker></ngx-mat-datetime-picker>
         </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="label">Price Range</div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-form-field appearance="outline" class="my-form-field" style="width: 50%">
+            <input matInput type="text" placeholder="Min Value" [formControl]="minValue">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="my-form-field" style="width: 50%">
+            <input matInput type="text" placeholder="Max Value" [formControl]="maxValue">
+          </mat-form-field>
+        </div>
       </div>
     </div>
   </div>

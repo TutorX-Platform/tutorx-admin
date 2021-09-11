@@ -1,0 +1,32 @@
+@mixin message-request-component($theme) {
+  $primary: map-get($theme, primary);
+  $secondary: map-get($theme, accent);
+  $tertiary: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  .message-request{
+    padding: 24px;
+    .title{
+      font: $heading-desktop-h5;
+      color: #222D34;
+    }
+    .sub-title{
+      font: $body-base-default;
+      color: #222D34;
+    }
+    .close-button{
+      cursor: pointer;
+    }
+    .label{
+      font: $body-caption-default;
+      color: #5B6469;
+      margin-top: 10px;
+    }
+    .amount-prefix{
+      padding: 12px 16px;
+      font: $body-base-bold;
+      color: #222D34;
+      background: #E3E6E8;
+    }
+  }
+}
