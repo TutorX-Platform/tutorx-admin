@@ -7,8 +7,14 @@ export interface Tutor {
   lastName: string;
   email: string;
   profileImage: string;
+  phoneNumber: string;
+  street: string;
+  city: string;
+  country: string;
+  subCategory: string[];
   subjects: NameCodePair[];
   engagedJobs: string[];
   rating: number;
   totalEarnings: number;
+  tasksCompleted: number;
 }

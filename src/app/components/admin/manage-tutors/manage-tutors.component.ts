@@ -6,6 +6,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ProgressDialogComponent} from "../../shared/progress-dialog/progress-dialog.component";
 import * as constants from '../../../models/constants';
 import {AddTutorComponent} from "../add-tutor/add-tutor.component";
+import {Tutor} from "../../../models/tutor";
 
 @Component({
   selector: 'app-manage-tutors',
@@ -21,7 +22,7 @@ export class ManageTutorsComponent implements OnInit {
   }
 
   contactForm!: FormGroup;
-  tutors: Student[] = [];
+  tutors: Tutor[] = [];
   rating = 3;
 
   numbers = [1, 2, 3];
@@ -43,6 +44,7 @@ export class ManageTutorsComponent implements OnInit {
       this.dashboardService.findTutors().valueChanges().subscribe(
         (res) => {
           this.tutors = res;
+          this.mapEarningsToTutor();
           progressDialog.close()
         }, () => {
           progressDialog.close();
@@ -51,7 +53,15 @@ export class ManageTutorsComponent implements OnInit {
     })
   }
 
-  onAddTutor(){
+  mapEarningsToTutor() {
+    this.dashboardService.findTutorPayments().valueChanges().subscribe(
+      (res) => {
+        console.log(res);
+      }
+    )
+  }
+
+  onAddTutor() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";

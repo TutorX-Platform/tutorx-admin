@@ -69,4 +69,10 @@ export class DashboardService {
     const tutorRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.students, ref => ref.where('role', '==', 'tutor'));
     return tutorRef;
   }
+
+  findTutorPayments() {
+    // @ts-ignore
+    const tutorRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.tutorEarnings);
+    return tutorRef;
+  }
 }
