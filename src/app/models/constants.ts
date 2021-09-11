@@ -85,12 +85,12 @@ export const routes = {
   sign_in: '/sign-in',
   student_q_pool: '/student/questions',
   student: '/student/',
-  turor: '/tutor',
+  admin: '/admin',
   questions: '/questions',
   dashboard: '/dashboard',
-  activities: '/activities',
-  profile: '/profile',
+  refunds: '/refunds',
   payments: '/payments',
+  manageTutors: '/manage-tutors',
   testChat: '/test-chat',
   chat: '/chat',
   pay: '/pay',
@@ -262,7 +262,7 @@ export function getProgressDialogData() {
     width: '200px',
     // height: '400px',
     disableClose: true,
-    panelClass: 'loading'
+    panelClass: 'dialog-container-custom'
   };
 }
 

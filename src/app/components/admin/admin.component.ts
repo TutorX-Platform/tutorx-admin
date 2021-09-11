@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Question } from 'src/app/models/question';
+import {Router} from "@angular/router";
+import * as constants from "../../models/constants";
 
 @Component({
   selector: 'app-admin',
@@ -26,7 +28,8 @@ export class AdminComponent implements OnInit {
   questions : Question[] = [];
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private router: Router
   ) { }
   showFiller = false;
   ngOnInit(): void {
@@ -65,6 +68,17 @@ export class AdminComponent implements OnInit {
 
   changePage(num:number){
     this.selectedPage = num;
+    if(num === 1){
+      this.router.navigate([constants.routes.admin + constants.routes.dashboard],{skipLocationChange: true});
+    }else if(num === 2){
+      this.router.navigate([constants.routes.admin + constants.routes.questions],{skipLocationChange: true});
+    }else if(num === 3){
+      this.router.navigate([constants.routes.admin + constants.routes.refunds],{skipLocationChange: true});
+    }else if(num === 4){
+      this.router.navigate([constants.routes.admin + constants.routes.payments],{skipLocationChange: true});
+    }else {
+      this.router.navigate([constants.routes.admin + constants.routes.manageTutors],{skipLocationChange: true});
+    }
   }
 
 }

@@ -65,12 +65,13 @@
           </div>
         </div>
       </mat-toolbar>
+      <router-outlet></router-outlet>
 
-      <app-dashboard *ngIf="selectedPage === 1"></app-dashboard>
+      <!--<app-dashboard *ngIf="selectedPage === 1"></app-dashboard>-->
       <!--<app-question-pool *ngIf="selectedPage === 2"></app-question-pool>-->
-      <app-refunds *ngIf="selectedPage === 3"></app-refunds>
-      <app-payments *ngIf="selectedPage === 4"></app-payments>
-      <app-manage-tutors *ngIf="selectedPage === 5"></app-manage-tutors>
+      <!--<app-refunds *ngIf="selectedPage === 3"></app-refunds>-->
+      <!--<app-payments *ngIf="selectedPage === 4"></app-payments>-->
+      <!--<app-manage-tutors *ngIf="selectedPage === 5"></app-manage-tutors>-->
 
 
     </mat-sidenav-content>

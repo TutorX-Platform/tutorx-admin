@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import * as constants from '../models/constants';
+import * as uuid from 'uuid';
 import {HttpClient} from "@angular/common/http";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import * as systemMessages from "../models/system-messages";
-import { MessageDialogComponent } from '../components/shared/message-dialog/message-dialog.component';
+import {MessageDialogComponent} from "../components/shared/message-dialog/message-dialog.component";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,20 @@ import { MessageDialogComponent } from '../components/shared/message-dialog/mess
 export class UtilService {
 
   constructor(private http: HttpClient, private dialog: MatDialog,) {
+  }
+
+  generateUniqueKey(keyType: string): string {
+    const uniqueId = uuid.v4();
+    if (keyType === constants.genKey.student) {
+      return constants.uniqueIdPrefix.prefixStudent.concat(uniqueId);
+    }
+    if (keyType === constants.genKey.tutor) {
+      return constants.uniqueIdPrefix.prefixTutor.concat(uniqueId);
+    }
+    if (keyType === constants.genKey.question) {
+      return constants.uniqueIdPrefix.prefixQuestion.concat(uniqueId);
+    }
+    return "";
   }
 
   generateChatLink(questionId: string, user: string) {

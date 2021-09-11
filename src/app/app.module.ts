@@ -49,7 +49,9 @@ import {environment} from "../environments/environment";
 import {AngularFirestoreModule} from 'angularfire2/firestore'
 import {AngularFireAuthModule} from 'angularfire2/auth'
 import {AngularFireStorageModule} from 'angularfire2/storage';
-import { AddTutorComponent } from './components/admin/add-tutor/add-tutor.component'
+import { AddTutorComponent } from './components/admin/add-tutor/add-tutor.component';
+import { AddQuestionComponent } from './components/shared/add-question/add-question.component';
+import { QuestionCardComponent } from './components/shared/question-card/question-card.component'
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { AddTutorComponent } from './components/admin/add-tutor/add-tutor.compon
     AuthComponent,
     ProgressDialogComponent,
     MessageDialogComponent,
-    AddTutorComponent
+    AddTutorComponent,
+    AddQuestionComponent,
+    QuestionCardComponent
 
   ],
   imports: [
