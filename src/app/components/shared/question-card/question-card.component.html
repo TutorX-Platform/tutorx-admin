@@ -36,7 +36,7 @@
       <button (click)="onViewDetails()" mat-button class="view-details">
         View Details
       </button>
-      <button *ngIf="!isPublicPool" (click)="onViewChat()" [class.dissabled]="!isTutorJoined"
+      <button (click)="onViewChat()" [class.dissabled]="!isTutorJoined"
               [disabled]="!isTutorJoined" mat-button class="view-chat">
         View Chat
       </button>

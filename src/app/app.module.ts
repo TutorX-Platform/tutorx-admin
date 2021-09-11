@@ -51,7 +51,11 @@ import {AngularFireAuthModule} from 'angularfire2/auth'
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import { AddTutorComponent } from './components/admin/add-tutor/add-tutor.component';
 import { AddQuestionComponent } from './components/shared/add-question/add-question.component';
-import { QuestionCardComponent } from './components/shared/question-card/question-card.component'
+import { QuestionCardComponent } from './components/shared/question-card/question-card.component';
+import { ChatComponent } from './components/shared/chat/chat.component';
+import { CountDownComponent } from './components/shared/count-down/count-down.component';
+import { CustomDropzonePreviewComponent } from './components/shared/custom-dropzone-preview/custom-dropzone-preview.component'
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
@@ -68,7 +72,10 @@ import { QuestionCardComponent } from './components/shared/question-card/questio
     MessageDialogComponent,
     AddTutorComponent,
     AddQuestionComponent,
-    QuestionCardComponent
+    QuestionCardComponent,
+    ChatComponent,
+    CountDownComponent,
+    CustomDropzonePreviewComponent
 
   ],
   imports: [
@@ -105,6 +112,7 @@ import { QuestionCardComponent } from './components/shared/question-card/questio
     NgxMatNativeDateModule,
     MatSelectModule,
     MatDatepickerModule,
+    NgxDropzoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]
