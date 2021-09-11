@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {MatChipInputEvent} from "@angular/material/chips";
+import {Tutor} from "../../../models/tutor";
 
 @Component({
   selector: 'app-manage-tutors',
@@ -42,7 +43,7 @@ export class ManageTutorsComponent implements OnInit {
 
   searchControl = new FormControl();
   contactForm!: FormGroup;
-  tutors: Student[] = [];
+  tutors: Tutor[] = [];
   rating = 3;
 
   numbers = [1, 2, 3];
@@ -64,6 +65,7 @@ export class ManageTutorsComponent implements OnInit {
       this.dashboardService.findTutors().valueChanges().subscribe(
         (res) => {
           this.tutors = res;
+          this.mapEarningsToTutor();
           progressDialog.close()
         }, () => {
           progressDialog.close();
@@ -72,7 +74,15 @@ export class ManageTutorsComponent implements OnInit {
     })
   }
 
-  onAddTutor(){
+  mapEarningsToTutor() {
+    this.dashboardService.findTutorPayments().valueChanges().subscribe(
+      (res) => {
+        console.log(res);
+      }
+    )
+  }
+
+  onAddTutor() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";

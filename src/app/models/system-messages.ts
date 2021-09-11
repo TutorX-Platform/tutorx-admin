@@ -13,8 +13,8 @@ export const questionTitles = {
   studentQuoteApproved: "Approve success",
   tutorSendQuote: "Send Success",
   tutorReleaseQuestionError: "Can't release the question",
-  notLoggedUserWithLoggedCredentials:"Your email already have an account",
-  approveRefundRequest:"Approve Refund Request ?"
+  notLoggedUserWithLoggedCredentials: "Your email already have an account",
+  approveRefundRequest: "Approve Refund Request ?"
 }
 
 export const questionMessages = {
@@ -32,8 +32,15 @@ export const questionMessages = {
   studentQuoteApproved: "Quote is approved successfully",
   tutorSendQuote: "Sent the quote successfully",
   tutorReleaseQuestionError: "Student have paid the question so you can't leave the question",
-  notLoggedUserWithLoggedCredentials:"Your email already have an account please log in first",
-  approveRefundRequest:"Are you sure to approve refund request"
+  notLoggedUserWithLoggedCredentials: "Your email already have an account please log in first",
+  approveRefundRequest: "Are you sure to approve refund request"
+}
+
+export const adminTitles = {
+ tutorAddedSuccess:'Tutor successfully registered'
+}
 
 
+export const adminMessages = {
+  tutorAddedSuccess:'Tutor successfully registered he can now login via given email and password'
 }

@@ -14,6 +14,8 @@ export const dummy_profile_picture = 'assets/images/default_profile.png';
 
 export const logo = 'assets/images/logo.svg';
 
+export const firebase_create_user_url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCDHrQasHNc9q11grA2cBOCjl5YrlaKelc';
+
 export const usedCurrency = 'USD';
 
 export const payStatus = {
@@ -52,6 +54,7 @@ export const collections = {
   payments: 'payment',
   refunds: 'refund',
   stat: 'stats',
+  tutorEarnings: 'earnings',
 }
 
 export const storage_collections = {

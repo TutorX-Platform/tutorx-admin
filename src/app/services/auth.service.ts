@@ -14,6 +14,7 @@ import {MailService} from "./mail.service";
 import {StudentService} from "./student-service.service";
 import {ProgressDialogComponent} from "../components/shared/progress-dialog/progress-dialog.component";
 import {firestore} from "firebase";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,11 @@ export class AuthService {
               public utilService: UtilService,
               private mailService: MailService,
               private dialog: MatDialog,
+              private http: HttpClient,
               private studentService: StudentService,
               public ngZone: NgZone) {
     this.angularFireAuth.authState.subscribe(user => {
+      console.log(user);
       if (user) {
         // @ts-ignore
         this.student.userId = user?.uid;
@@ -270,5 +273,51 @@ export class AuthService {
       }
     )
   }
+
+
+  saveTutor(email: string, userId: string, firstName: string, imageUrl: string, lastname: string, subject: string, subCategory: string[], phoneNumber: string, street: string, city: string, country: string) {
+    const userRef: AngularFirestoreDocument<any> = this.angularFirestoreService.doc(`${constants.collections.students}/${userId}`);
+    const userData: any = {
+      email: email,
+      firstName: firstName,
+      isVerified: "",
+      lastName: lastname,
+      profileImage: imageUrl,
+      questions: [],
+      uniqueKey: this.utilService.generateUniqueKey(constants.userTypes.tutor),
+      userId: userId,
+      role: constants.userTypes.tutor,
+      subjects: subject,
+      subCategory: subCategory,
+      phoneNumber: phoneNumber,
+      street: street,
+      city: city,
+      country: country,
+      rating: 0,
+      totalEarnings: 0,
+      tasksCompleted: 0,
+    }
+    return userRef.set(userData, {
+      merge: true
+    });
+  }
+
+  registerATutor(email: string, password: string, firstName: string, imageUrl: string, lastname: string, subCategory: string[], subject: string, phoneNumber: string, street: string, city: string, country: string) {
+    const body = {
+      'email': email,
+      'password': password,
+      'returnSecureToken': true,
+    };
+    return this.http.post(constants.firebase_create_user_url, body, {}).subscribe(
+      (res) => {
+        // @ts-ignore
+        this.saveTutor(email, res.localId, firstName, imageUrl, lastname, subject, subCategory, phoneNumber, street, city, country);
+        // @ts-ignore
+        this.studentService.createEarningSectionForTutor(res.localId).then();
+        this.utilService.openDialog(systemMessages.adminTitles.tutorAddedSuccess, systemMessages.adminMessages.tutorAddedSuccess, constants.messageTypes.success).afterOpened().subscribe()
+      }
+    );
+  }
+
 
 }

@@ -3,9 +3,10 @@
     <div mat-dialog-title class="title">Register Tutor</div>
     <mat-dialog-content>
       <div class="prof-picture-container" fxLayout="row" fxLayoutGap="32px" fxLayoutAlign="start center">
-        <img src="assets/images/profile.jpg" class="prof-pic">
+        <img [src]="filePath" class="prof-pic">
         <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
-          <button mat-flat-button class="upload-new" color="primary">
+          <input type="file" (change)="handle($event)">
+          <button (click)="uploadNewImage()" mat-flat-button class="upload-new" color="primary">
             Upload new image
           </button>
           <button mat-flat-button class="delete">
@@ -89,6 +90,9 @@
           </div>
         </div>
       </form>
+      <button (click)="onDone()" mat-flat-button class="upload-new" color="primary">
+        Done
+      </button>
     </mat-dialog-content>
   </div>
 </div>

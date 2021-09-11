@@ -59,4 +59,12 @@ export class StudentService {
     return userRef;
   }
 
+  createEarningSectionForTutor(tutorId: string) {
+    const data = {
+      totalEarnings: 0
+    }
+    const payRef: AngularFirestoreDocument<any> = this.angularFirestoreService.doc(`${constants.collections.tutorEarnings}/${tutorId}`);
+    return payRef.set(data);
+  }
+
 }
