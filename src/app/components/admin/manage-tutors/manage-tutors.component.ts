@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Student} from "../../../models/student";
 import {DashboardService} from "../../../services/dashboard.service";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ProgressDialogComponent} from "../../shared/progress-dialog/progress-dialog.component";
 import * as constants from '../../../models/constants';
+import {AddTutorComponent} from "../add-tutor/add-tutor.component";
 
 @Component({
   selector: 'app-manage-tutors',
@@ -48,5 +49,23 @@ export class ManageTutorsComponent implements OnInit {
         }
       )
     })
+  }
+
+  onAddTutor(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    // dialogConfig.height = "100%";
+    const dialogRef = this.dialog.open(AddTutorComponent, dialogConfig);
+
+    // dialogRef.afterClosed().subscribe(
+    //   (result) => {
+    //     if (result) {
+    //       if (this.authService.isLoggedIn) {
+    //         this.router.navigate([constants.routes.student_q_pool], {skipLocationChange: true});
+    //       }
+    //     }
+    //   }
+    // )
   }
 }

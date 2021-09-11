@@ -1,0 +1,94 @@
+<div class="auth">
+  <div fxLayout="column" fxLayoutAlign="start stretch">
+    <div mat-dialog-title class="title">Register Tutor</div>
+    <mat-dialog-content>
+      <div class="prof-picture-container" fxLayout="row" fxLayoutGap="32px" fxLayoutAlign="start center">
+        <img src="assets/images/profile.jpg" class="prof-pic">
+        <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
+          <button mat-flat-button class="upload-new" color="primary">
+            Upload new image
+          </button>
+          <button mat-flat-button class="delete">
+            Delete
+          </button>
+        </div>
+      </div>
+      <form [formGroup]="tutorAddForm">
+        <div class="form" fxLayout="column" fxLayoutGap="8px">
+          <div>
+            <div class="label">Name</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="name" matInput type="text" class="other">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="label">Email address</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input [pattern]="emailPattern" formControlName="email" matInput type="email" class="other">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="label">Phone Number</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="phoneNumber" matInput type="number" class="other">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="label">Street</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="street" matInput type="text" class="other">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="label">City</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="city" matInput type="text" class="other">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="label">Country</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="country" matInput type="text" class="other">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="label">Postal Code</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="postalCode" matInput type="text" class="other">
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <div>
+              <div class="label">Subject</div>
+              <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                <mat-select formControlName="subjectList" (blur)="onSubjectBlur()">
+                  <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Subject Subcategory</div>
+              <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                <mat-select formControlName="subjectSubCategoryList" multiple>
+                  <mat-option *ngFor="let sub of subCategory" [value]="sub">{{sub}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <div class="label">Password</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="password" matInput type="password" class="other">
+            </mat-form-field>
+          </div>
+          <div>
+            <div class="label">Confirm Password</div>
+            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+              <input formControlName="confirmPassword" matInput type="password" class="other">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-dialog-content>
+  </div>
+</div>
