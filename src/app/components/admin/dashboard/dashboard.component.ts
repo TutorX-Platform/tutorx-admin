@@ -40,28 +40,14 @@ export class DashboardComponent implements OnInit {
     const progressDialog = this.dialog.open(ProgressDialogComponent, constants.getProgressDialogData());
     progressDialog.afterOpened().subscribe(
       () => {
-        this.dashboardService.findQuestionStats().valueChanges().subscribe(
+        this.dashboardService.findStats().valueChanges().subscribe(
           (res) => {
-            this.dashboardService.findTotalUserCount().valueChanges().subscribe(
-              (res1) => {
-                this.dashboardService.findTotalEarnings().valueChanges().subscribe(
-                  (res3) => {
-                    this.totalEarnings = res3.count;
-                    this.totalUsers = res1.length;
-                    this.totalQuestions = res.count;
-                    this.inProgressQuestions = res.inProgress;
-                    this.completedQuestions = res.completed;
-                    progressDialog.close()
-                  }, () => {
-                    progressDialog.close();
-                  }
-                )
-              }, () => {
-                progressDialog.close();
-              }
-            )
-          }, () => {
-            progressDialog.close()
+            this.totalEarnings = res.payments;
+            this.inProgressQuestions = res.inprogressQuestions;
+            this.totalQuestions = res.questionCount;
+            this.completedQuestions = res.completedQuestions;
+            this.totalUsers = res.userCount;
+            progressDialog.close();
           }
         )
       }

@@ -50,7 +50,8 @@ export const collections = {
   review: 'review',
   message: 'message',
   payments: 'payment',
-  refunds: 'refund'
+  refunds: 'refund',
+  stat: 'stats',
 }
 
 export const storage_collections = {

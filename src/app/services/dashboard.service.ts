@@ -11,22 +11,10 @@ export class DashboardService {
   constructor(private angularFirestoreService: AngularFirestore,) {
   }
 
-  findTotalUserCount() {
+  findStats() {
     // @ts-ignore
-    const studentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.students);
-    return studentRef;
-  }
-
-  findQuestionStats() {
-    // @ts-ignore
-    const questionRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.doc(constants.collections.questions.concat("/count"));
-    return questionRef;
-  }
-
-  findTotalEarnings() {
-    // @ts-ignore
-    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.doc(constants.collections.payments.concat("/count"));
-    return paymentRef;
+    const statRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.stat).doc(constants.collections.stat);
+    return statRef;
   }
 
   findRecentChats() {
@@ -63,22 +51,22 @@ export class DashboardService {
     return refundRef;
   }
 
-  approveRefund(refundId:string) {
+  approveRefund(refundId: string) {
     // @ts-ignore
     const refundRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.refunds).doc(refundId);
-    const data = {isApproved:true}
+    const data = {isApproved: true}
     return refundRef.update(data);
   }
 
-  findPayments(){
+  findPayments() {
     // @ts-ignore
-    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments,ref=>ref.where('fee','!=',''));
+    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments, ref => ref.where('fee', '!=', ''));
     return paymentRef;
   }
 
-  findTutors(){
+  findTutors() {
     // @ts-ignore
-    const tutorRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.students,ref=>ref.where('role','==','tutor'));
+    const tutorRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.students, ref => ref.where('role', '==', 'tutor'));
     return tutorRef;
   }
 }
