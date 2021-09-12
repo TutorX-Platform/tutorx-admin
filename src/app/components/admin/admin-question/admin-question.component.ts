@@ -117,6 +117,22 @@ export class AdminQuestionComponent implements OnInit {
 
   selectStatus(num: number) {
     this.selectedStatus = num;
+    if (this.selectedStatus === 0) {
+      this.askedQuestions = this.allAskedQuestions;
+    }
+    if (this.selectedStatus === 1) {
+      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.assigned);
+    }
+
+    if (this.selectedStatus === 2) {
+      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.in_progress);
+    }
+    if (this.selectedStatus === 3) {
+      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.completed);
+    }
+    if (this.selectedStatus === 4) {
+      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.cancelled);
+    }
   }
 
   onFilterSelect(event: any) {
@@ -151,7 +167,7 @@ export class AdminQuestionComponent implements OnInit {
       (res) => {
         // @ts-ignore
         this.studentService.currentStudent = res;
-        this.questionService.getQuestions().valueChanges().subscribe(
+        this.questionService.getAllQuestions().valueChanges().subscribe(
           (res) => {
             // @ts-ignore
             this.askedQuestions = res;
@@ -246,6 +262,7 @@ export class AdminQuestionComponent implements OnInit {
   }
 
   changeStatus() {
+    console.log(this.selectedStatus);
   }
 
 

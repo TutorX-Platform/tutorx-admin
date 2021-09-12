@@ -136,7 +136,7 @@ export class ManageTutorsComponent implements OnInit {
     return this.allTutors.filter(fruit => fruit.toLowerCase().includes(filterValue));
   }
 
-  onCardClick(){
-    this.router.navigate([constants.routes.admin + constants.routes.tutor_payment_details],{skipLocationChange: true});
+  onCardClick() {
+    this.router.navigate(['' + constants.routes.tutor_payment_details], {skipLocationChange: true});
   }
 }

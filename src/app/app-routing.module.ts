@@ -15,6 +15,7 @@ import {PaymentsComponent} from "./components/admin/payments/payments.component"
 import {AdminQuestionComponent} from "./components/admin/admin-question/admin-question.component";
 import {StudentPaymentDetailedViewComponent} from "./components/admin/student-payment-detailed-view/student-payment-detailed-view.component";
 import {TutorPaymentsDetailedViewComponent} from "./components/admin/tutor-payments-detailed-view/tutor-payments-detailed-view.component";
+import {ChatComponent} from "./components/shared/chat/chat.component";
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['/signIn']);
 
@@ -38,10 +39,10 @@ const routes: Routes = [
         path: 'refunds',
         component: RefundsComponent
       },
-      // {
-      //   path: 'chat/:id',
-      //   component: ChatComponent
-      // },
+      {
+        path: 'chat/:id',
+        component: ChatComponent
+      },
       {
         path: 'payments',
         component: PaymentsComponent

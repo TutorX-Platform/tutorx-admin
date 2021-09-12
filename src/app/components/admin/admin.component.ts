@@ -6,6 +6,7 @@ import {map, shareReplay} from 'rxjs/operators';
 import {Question} from 'src/app/models/question';
 import {Router} from "@angular/router";
 import * as constants from "../../models/constants";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-admin',
@@ -30,7 +31,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public authService: AuthService,
   ) {
   }
 

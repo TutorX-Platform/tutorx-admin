@@ -60,11 +60,7 @@ export class QuestionCardComponent implements OnInit {
   }
 
   onViewChat() {
-    if (this.isTutor) {
-      this.router.navigate([constants.routes.admin + constants.routes.chat, this.id], {skipLocationChange: true});
-    } else {
-      this.router.navigate([constants.routes.student + constants.routes.chat, this.id]);
-    }
+    this.router.navigate(['' + constants.routes.chat, this.id], {skipLocationChange: true});
   }
 
   onViewDetails() {
