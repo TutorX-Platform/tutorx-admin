@@ -245,5 +245,8 @@ export class AdminQuestionComponent implements OnInit {
     }
   }
 
+  changeStatus() {
+  }
+
 
 }
