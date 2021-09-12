@@ -58,6 +58,8 @@ import { CountDownComponent } from './components/shared/count-down/count-down.co
 import { CustomDropzonePreviewComponent } from './components/shared/custom-dropzone-preview/custom-dropzone-preview.component'
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MessageRequestComponent } from './components/admin/message-request/message-request.component';
+import { StudentPaymentDetailedViewComponent } from './components/admin/student-payment-detailed-view/student-payment-detailed-view.component';
+import { TutorPaymentsDetailedViewComponent } from './components/admin/tutor-payments-detailed-view/tutor-payments-detailed-view.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { MessageRequestComponent } from './components/admin/message-request/mess
     ChatComponent,
     CountDownComponent,
     CustomDropzonePreviewComponent,
-    MessageRequestComponent
+    MessageRequestComponent,
+    StudentPaymentDetailedViewComponent,
+    TutorPaymentsDetailedViewComponent
 
   ],
   imports: [
