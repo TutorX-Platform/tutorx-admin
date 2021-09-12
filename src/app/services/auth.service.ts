@@ -238,22 +238,17 @@ export class AuthService {
           // @ts-ignore
           const student: Student = res;
           this.student = student;
-          if (student.role === constants.userTypes.student) {
+          if (student.role === constants.userTypes.admin) {
             this.ngZone.run(() => {
               this.isLoggedIn = true;
               if (progressDialog) {
                 progressDialog.close();
               }
-              this.router.navigate([constants.routes.student_q_pool], {skipLocationChange: true});
+              this.router.navigate([''], {skipLocationChange: true});
             });
-          } else if (student.role === constants.userTypes.tutor) {
-            this.ngZone.run(() => {
-              this.isLoggedIn = true;
-              if (progressDialog) {
-                progressDialog.close();
-              }
-              this.router.navigate([constants.routes.admin + '/questions'], {skipLocationChange: true});
-            });
+          } else {
+            this.utilService.openDialog(systemMessages.adminTitles.loginPermissionDenied, systemMessages.adminMessages.loginPermissionDenied, constants.messageTypes.warning).afterOpened().subscribe();
+            this.mailService.unAuthorizedAccessToAdminScreen(this.student.email).subscribe();
           }
         } else {
           progressDialog.close();

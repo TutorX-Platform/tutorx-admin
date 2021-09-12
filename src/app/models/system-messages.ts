@@ -37,10 +37,13 @@ export const questionMessages = {
 }
 
 export const adminTitles = {
- tutorAddedSuccess:'Tutor successfully registered'
+ tutorAddedSuccess:'Tutor successfully registered',
+ loginPermissionDenied:'Permission Denied',
 }
 
 
 export const adminMessages = {
-  tutorAddedSuccess:'Tutor successfully registered he can now login via given email and password'
+  tutorAddedSuccess:'Tutor successfully registered he can now login via given email and password',
+  loginPermissionDenied:'You dont have permission to view this page',
+
 }

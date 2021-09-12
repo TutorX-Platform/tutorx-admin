@@ -27,6 +27,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {ProgressDialogComponent} from './components/shared/progress-dialog/progress-dialog.component';
+import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -122,7 +123,7 @@ import { TutorPaymentsDetailedViewComponent } from './components/admin/tutor-pay
     NgxDropzoneModule,
     MatRadioModule
   ],
-  providers: [],
+  providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

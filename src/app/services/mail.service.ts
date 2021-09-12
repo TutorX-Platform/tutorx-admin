@@ -128,4 +128,14 @@ export class MailService {
     return this.http.post(constants.backend_url.concat(constants.backend_api_resource.email), emailData);
   }
 
+  unAuthorizedAccessToAdminScreen(email: string) {
+    const emailData = {
+      'fromEmail': constants.email_data.senderEmail,
+      'subject': 'UnAuthorized chats shared in chat',
+      'text': `${email} just tried to access admin panel `,
+      'toEmail': 'tharindu.prf@gmail.com',
+    }
+    return this.http.post(constants.backend_url.concat(constants.backend_api_resource.email), emailData);
+  }
+
 }
