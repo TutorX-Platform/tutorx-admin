@@ -27,6 +27,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {ProgressDialogComponent} from './components/shared/progress-dialog/progress-dialog.component';
+import {AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -50,14 +51,14 @@ import {environment} from "../environments/environment";
 import {AngularFirestoreModule} from 'angularfire2/firestore'
 import {AngularFireAuthModule} from 'angularfire2/auth'
 import {AngularFireStorageModule} from 'angularfire2/storage';
-import { AddTutorComponent } from './components/admin/add-tutor/add-tutor.component';
-import { AddQuestionComponent } from './components/shared/add-question/add-question.component';
-import { QuestionCardComponent } from './components/shared/question-card/question-card.component';
-import { ChatComponent } from './components/shared/chat/chat.component';
-import { CountDownComponent } from './components/shared/count-down/count-down.component';
-import { CustomDropzonePreviewComponent } from './components/shared/custom-dropzone-preview/custom-dropzone-preview.component'
-import { NgxDropzoneModule } from 'ngx-dropzone';
-import { MessageRequestComponent } from './components/admin/message-request/message-request.component';
+import {AddTutorComponent} from './components/admin/add-tutor/add-tutor.component';
+import {AddQuestionComponent} from './components/shared/add-question/add-question.component';
+import {QuestionCardComponent} from './components/shared/question-card/question-card.component';
+import {ChatComponent} from './components/shared/chat/chat.component';
+import {CountDownComponent} from './components/shared/count-down/count-down.component';
+import {CustomDropzonePreviewComponent} from './components/shared/custom-dropzone-preview/custom-dropzone-preview.component'
+import {NgxDropzoneModule} from 'ngx-dropzone';
+import {MessageRequestComponent} from './components/admin/message-request/message-request.component';
 
 
 @NgModule({
@@ -118,7 +119,7 @@ import { MessageRequestComponent } from './components/admin/message-request/mess
     NgxDropzoneModule,
     MatRadioModule
   ],
-  providers: [],
+  providers: [AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

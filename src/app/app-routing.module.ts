@@ -14,14 +14,14 @@ import {ManageTutorsComponent} from "./components/admin/manage-tutors/manage-tut
 import {PaymentsComponent} from "./components/admin/payments/payments.component";
 import {AdminQuestionComponent} from "./components/admin/admin-question/admin-question.component";
 
-const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
+const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['/signIn']);
 
 const routes: Routes = [
-  {path: '', component: AuthComponent},
+  {path: 'signIn', component: AuthComponent},
   {
-    path: 'admin', component: AdminComponent,
-    // canActivate: [AngularFireAuthGuard],
-    // data: {authGuardPipe: redirectUnauthorizedToHome},
+    path: '', component: AdminComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToHome},
     children: [
       {
         path: 'dashboard',
@@ -50,8 +50,8 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'admin/dashboard',
-        pathMatch: 'full'
+        redirectTo: '/dashboard',
+        pathMatch: 'full',
       }
     ]
   },
