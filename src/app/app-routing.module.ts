@@ -13,6 +13,8 @@ import {RefundsComponent} from "./components/admin/refunds/refunds.component";
 import {ManageTutorsComponent} from "./components/admin/manage-tutors/manage-tutors.component";
 import {PaymentsComponent} from "./components/admin/payments/payments.component";
 import {AdminQuestionComponent} from "./components/admin/admin-question/admin-question.component";
+import {StudentPaymentDetailedViewComponent} from "./components/admin/student-payment-detailed-view/student-payment-detailed-view.component";
+import {TutorPaymentsDetailedViewComponent} from "./components/admin/tutor-payments-detailed-view/tutor-payments-detailed-view.component";
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['/signIn']);
 
@@ -47,6 +49,14 @@ const routes: Routes = [
       {
         path: 'manage-tutors',
         component: ManageTutorsComponent
+      },
+      {
+        path: 'student-payment',
+        component: StudentPaymentDetailedViewComponent
+      },
+      {
+        path: 'tutor-payment',
+        component: TutorPaymentsDetailedViewComponent
       },
       {
         path: '',

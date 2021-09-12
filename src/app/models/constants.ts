@@ -97,7 +97,8 @@ export const routes = {
   testChat: '/test-chat',
   chat: '/chat',
   pay: '/pay',
-  paySuccess: '/pay-success'
+  paySuccess: '/pay-success',
+  tutor_payment_details: '/tutor-payment'
 }
 
 export const localStorageKeys = {

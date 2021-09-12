@@ -12,6 +12,7 @@ import {map, startWith} from "rxjs/operators";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {Tutor} from "../../../models/tutor";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-manage-tutors',
@@ -34,7 +35,8 @@ export class ManageTutorsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dashboardService: DashboardService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.filteredTutors = this.tutorCtrl.valueChanges.pipe(
       startWith(null),
@@ -132,5 +134,9 @@ export class ManageTutorsComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.allTutors.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
+  onCardClick(){
+    this.router.navigate([constants.routes.admin + constants.routes.tutor_payment_details],{skipLocationChange: true});
   }
 }

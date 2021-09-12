@@ -1,0 +1,108 @@
+<div class="manage-tutors">
+  <div class="page-title-container" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <mat-icon style="cursor: pointer" (click)="onBack()">arrow_back</mat-icon>
+      <div class="page-title">Daria Jamey</div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <button mat-flat-button >Remove</button>
+      <button mat-flat-button color="primary" style="color: white">Email</button>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="main-container" fxLayout="row">
+    <div class="request-container" fxLayout="column" fxLayoutGap="24px">
+      <div class="payment-detail-left">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+          <div class="rating" fxLayout="row">
+            <mat-icon [ngClass]="rating >= 1 ? 'star star--selected' : 'star'">star</mat-icon>
+            <mat-icon [ngClass]="rating >= 2 ? 'star star--selected' : 'star'">star</mat-icon>
+            <mat-icon [ngClass]="rating >= 3 ? 'star star--selected' : 'star'">star</mat-icon>
+            <mat-icon [ngClass]="rating >= 4 ? 'star star--selected' : 'star'">star</mat-icon>
+            <mat-icon [ngClass]="rating >= 5 ? 'star star--selected' : 'star'">star</mat-icon>
+          </div>
+          <div class="date">
+            {{date | date:'yyyy-MM-dd h:mm:ss'}}
+          </div>
+          <div class="c-chip c-chip--success invert-false">Paid</div>
+        </div>
+        <div class="other-details-container" fxLayout="column" fxLayoutGap="16px">
+          <div class="make-payment" fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              Payment for this month is $400.00
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+              <button mat-flat-button>Pay Later</button>
+              <button mat-flat-button color="accent" style="color: white">Pay Now</button>
+              <button mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="make-payment make-payment--failed" fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              Payment for this month is $400.00
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+              <button mat-flat-button>Pay Later</button>
+              <button mat-flat-button color="accent" style="color: white">Pay Now</button>
+              <button mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="payment-history" fxLayout="column" fxLayoutGap="24px">
+          <div class="title">
+            Payment History
+          </div>
+          <div *ngFor="let num of [1,2,3]">
+            <div class="payment-info" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+              <div class="date">
+                22, Oct 2021
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+                <div class="time">
+                  10:00 pm
+                </div>
+                <div class="time">
+                  Question ID
+                </div>
+                <div class="paid">
+                  $1000.00
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="filter-container" fxLayout="column" fxLayoutGap="16px">
+      <div class="box" fxLayout="column" fxLayoutGap="8px">
+        <div class="title">
+          Total Earnings
+        </div>
+        <div class="amount-bold">
+          $1400.00
+        </div>
+        <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
+          <div class="other">
+            This month earnings/ month
+          </div>
+          <div class="amount">
+            $400.00
+          </div>
+        </div>
+      </div>
+      <div class="label">Select Month</div>
+      <mat-form-field appearance="outline" class="my-form-field">
+        <input matInput [ngxMatDatetimePicker]="picker" [max]="date" placeholder="DD/MM/YYYY">
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker [hideTime]="true" #picker></ngx-mat-datetime-picker>
+      </mat-form-field>
+    </div>
+  </div>
+
+</div>

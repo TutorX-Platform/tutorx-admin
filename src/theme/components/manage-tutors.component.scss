@@ -51,7 +51,8 @@
                 .request-card{
                     background: #FFFFFF;
                     border-radius: 8px;
-                    padding: 24px;                    
+                    padding: 24px;
+                    cursor: pointer;
 
                     .avatar {
                         vertical-align: middle;
@@ -170,7 +171,69 @@
                       font:  500 16px/24px Roboto,'Manrope', sans-serif;
                     }
                   }
+              .box{
+                padding: 24px;
+                border-radius: 4px;
+                width: 100%;
+                background: white;
+                .title{
+                  font: $body-small-bold;
+                }
+                .amount-bold{
+                  font: $heading-desktop-h4;
+                }
+                .other{
+                  font: $body-small-default;
+                  color: #686D74;
+                }
+                .amount{
+                  font: $body-base-bold;
+                  color: #644AE7;
+                }
+              }
             }
         }
+      .payment-detail-left{
+        .date{
+          font: $body-base-default;
+          color: #182538;
+        }
+        .other-details-container{
+          margin-top: 24px;
+          .make-payment{
+            padding: 14px 15px;
+            font: $body-xsmall-bold;
+            color: #207833;
+            background: #D6FBE0;
+            &--failed{
+              color: #A32E2E !important;
+              background: #FBD6D6 !important;
+            }
+          }
+        }
+        .payment-history{
+          padding: 24px 0px 0px;
+          .title{
+            font: $heading-desktop-h6;
+            color: #182538;
+          }
+          .payment-info{
+            .date{
+              font: $body-base-bold;
+            }
+            .time{
+              background: white;
+              border-radius: 4px;
+              padding: 2px 8px 4px;
+              font: $body-xsmall-bold;
+              color: #182538;
+            }
+            .paid{
+              font: $body-xsmall-bold;
+              color: #644AE7;
+            }
+          }
+        }
+      }
     }
 }
