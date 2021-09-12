@@ -51,10 +51,14 @@ export class DashboardService {
     return refundRef;
   }
 
-  approveRefund(refundId: string) {
+  approveRefund(refundId: string, amount: number, message: string) {
     // @ts-ignore
     const refundRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.refunds).doc(refundId);
-    const data = {isApproved: true}
+    const data = {
+      isApproved: true,
+      refundAmount: amount,
+      message: message
+    }
     return refundRef.update(data);
   }
 

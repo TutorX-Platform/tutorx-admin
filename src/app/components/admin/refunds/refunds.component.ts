@@ -65,15 +65,9 @@ export class RefundsComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '650px';
+    dialogConfig.data = refundId;
     // dialogConfig.height = "810px";
     const dialogRef = this.dialog.open(MessageRequestComponent, dialogConfig);
-    this.utilService.openDialog(systemMessages.questionTitles.approveRefundRequest, systemMessages.questionMessages.approveRefundRequest, constants.messageTypes.confirmation).afterClosed().subscribe(
-      (res) => {
-        if (res) {
-          this.dashboardService.approveRefund(refundId);
-        }
-      }
-    )
   }
 
 }
