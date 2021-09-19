@@ -7,7 +7,7 @@
              class="chat-title">{{questionService.question.questionTitle}}</div>
         <div *ngIf="questionService.question === undefined" class="chat-title">Loading</div>
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <div class="chat-subtitle">{{chat.uniqueId}} | Created
+          <div class="chat-subtitle">{{chat.questionNumber}} | Created
             on {{questionCreatedDate * 1000 | date:'yyyy/MM/dd h:mm:ss a'}}</div>
           <!--<div *ngIf="status === 'Open'" class="c-chip c-chip&#45;&#45;neutral invert-false">Open</div>-->
           <div *ngIf="questionService.question.status === 'Open'" class="c-chip c-chip--neutral invert-false">Open</div>
@@ -24,25 +24,25 @@
       </div>
     </div>
     <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
-      <button (click)="onCopyLink()" mat-flat-button color="primary" style="color: white">Copy Link</button>
-      <mat-icon mat-button [matMenuTriggerFor]="menu" style="cursor: pointer;">more_vert</mat-icon>
-      <mat-menu #menu="matMenu">
-        <button *ngIf="authService.student.role==='student' && questionService.question.status==='Assigned'"
-                mat-menu-item (click)="onRequestNewTutor()"
-                class="drop-down" fxLayout="row"
-                fxLayoutAlign="start center"
-                fxLayoutGap="8px">
-          <mat-icon class="material-icons-outlined">logout</mat-icon>
-          <div>Request New Tutor</div>
-        </button>
-        <button *ngIf="authService.student.role==='tutor'" mat-menu-item (click)="onReleaseQuestion()"
-                class="drop-down" fxLayout="row"
-                fxLayoutAlign="start center"
-                fxLayoutGap="8px">
-          <mat-icon class="material-icons-outlined">logout</mat-icon>
-          <div>Release Question</div>
-        </button>
-      </mat-menu>
+      <!--      <button (click)="onCopyLink()" mat-flat-button color="primary" style="color: white">Copy Link</button>-->
+      <!--      <mat-icon mat-button [matMenuTriggerFor]="menu" style="cursor: pointer;">more_vert</mat-icon>-->
+      <!--      <mat-menu #menu="matMenu">-->
+      <!--        <button *ngIf="authService.student.role==='student' && questionService.question.status==='Assigned'"-->
+      <!--                mat-menu-item (click)="onRequestNewTutor()"-->
+      <!--                class="drop-down" fxLayout="row"-->
+      <!--                fxLayoutAlign="start center"-->
+      <!--                fxLayoutGap="8px">-->
+      <!--          <mat-icon class="material-icons-outlined">logout</mat-icon>-->
+      <!--          <div>Request New Tutor</div>-->
+      <!--        </button>-->
+      <!--        <button *ngIf="authService.student.role==='tutor'" mat-menu-item (click)="onReleaseQuestion()"-->
+      <!--                class="drop-down" fxLayout="row"-->
+      <!--                fxLayoutAlign="start center"-->
+      <!--                fxLayoutGap="8px">-->
+      <!--          <mat-icon class="material-icons-outlined">logout</mat-icon>-->
+      <!--          <div>Release Question</div>-->
+      <!--        </button>-->
+      <!--      </mat-menu>-->
     </div>
   </div>
 
@@ -278,12 +278,6 @@
           </div>
           <div class="c-chip c-chip--progress">Fully paid</div>
         </div>
-        <button *ngIf="!questionService.question.isRefundRequested" (click)="onRequestRefund()" mat-flat-button class="request-refund">
-          Request refund
-        </button>
-        <button *ngIf="questionService.question.isRefundRequested" (click)="onRequestRefund()" mat-flat-button class="requested-refund">
-          Requested refund
-        </button>
       </div>
       <div *ngIf="!questionService.question.isPaid && !isTutor && questionService.question.isQuoteApproved"
            class="cover-box" fxLayout="row"
@@ -380,7 +374,8 @@
         <img src="../../assets/images/box.svg">
         <div class="toolbar-q-container" fxLayout="column" fxLayoutAlign="center start" style="cursor: pointer"
              (click)="onDetailedView(true)">
-          <div class="q-title-toolbar">{{questionService.question !== undefined ? questionService.question.questionTitle : ''}}</div>
+          <div
+            class="q-title-toolbar">{{questionService.question !== undefined ? questionService.question.questionTitle : ''}}</div>
           <div class="last-seen">Last Seen 24h ago</div>
         </div>
       </div>
@@ -458,7 +453,7 @@
                 <!--<div class="time">Todat at 9.00 AM</div>-->
               </div>
               <div fxLayout="row" fxLayoutAlign="start center">
-                <div  class="message-box message-box--other-user-message">
+                <div class="message-box message-box--other-user-message">
                   {{message.message}}
                 </div>
               </div>
@@ -619,19 +614,20 @@
         <div class="attachment-title">
           Attchments
         </div>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="8px"><div *ngFor="let attachment of chat.attachments">
-          <a fxLayout="column" class="drop-zone" href="{{attachment.downloadUrl}}" target="_blank">
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <img src="assets/icons/jpeg.svg" class="icon-image">
-            </div>
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <div class="file-name">
-                <!--{{this.file.name}}-->
-                {{attachment.fileName}}
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="8px">
+          <div *ngFor="let attachment of chat.attachments">
+            <a fxLayout="column" class="drop-zone" href="{{attachment.downloadUrl}}" target="_blank">
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <img src="assets/icons/jpeg.svg" class="icon-image">
               </div>
-            </div>
-          </a>
-        </div>
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <div class="file-name">
+                  <!--{{this.file.name}}-->
+                  {{attachment.fileName}}
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>

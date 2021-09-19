@@ -20,6 +20,7 @@ import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} 
 import * as systemMessages from '../../../models/system-messages'
 import {MailService} from "../../../services/mail.service";
 import {Attachment} from "../../../models/Attachment";
+
 // import {PaymentService} from "../../../services/payment.service";
 
 @Component({
@@ -43,6 +44,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   task: AngularFireUploadTask;
   attachments: string[] = [];
   chat: Chat = {
+    isQuote: false,
+    questionNumber: "",
     questionTitle: "",
     studentProfile: "",
     tutorProfile: "",
@@ -178,7 +181,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         console.log(res.createdDate['seconds']);
         // @ts-ignore
         this.questionCreatedDate = res.createdDate['seconds'];
-        if (this.chat.tutorId === this.authService.student.userId || this.chat.studentId === this.authService.student.userId || this.chat.studentEmail === this.notLoggedUserEmail) {
+        if (this.chat.tutorId === this.authService.student.userId || this.chat.studentId === this.authService.student.userId || this.chat.studentEmail === this.notLoggedUserEmail || this.studentService.currentStudent.role === constants.userTypes.admin) {
           this.chatService.getMessages(this.chatToken).valueChanges().subscribe(
             res => {
               // @ts-ignore
@@ -251,7 +254,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       // @ts-ignore
       this.router.navigate([constants.routes.turor.concat(constants.routes.activities)], {skipLocationChange: true});
     } else {
-      this.router.navigate([constants.routes.student_q_pool], {skipLocationChange: true});
+      this.router.navigate(['/'.concat(constants.routes.questions)], {skipLocationChange: true});
     }
   }
 

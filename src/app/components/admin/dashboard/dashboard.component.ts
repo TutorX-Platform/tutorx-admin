@@ -7,6 +7,7 @@ import {ProgressDialogComponent} from '../../shared/progress-dialog/progress-dia
 import {Chat} from "../../../models/chat";
 import {Payment} from "../../../models/payment";
 import {UtilService} from "../../../services/util-service.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService,
               private utilService: UtilService,
+              private router: Router,
               private dialog: MatDialog) {
   }
 
@@ -72,14 +74,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onViewChat(id: string) {
-    console.log(id);
-    this.utilService.getTimeFromTimeAPI().subscribe(
-      (res) => {
-        console.log('sent');
-        // @ts-ignore
-        this.dashboardService.sendAdminMonitoringChatMsg(res.time, id);
-      }
-    )
+    this.router.navigate([''.concat(constants.routes.chat).concat(constants.url_sign.url_separator).concat(id)], {skipLocationChange: true});
   }
 
 }

@@ -118,20 +118,45 @@ export class AdminQuestionComponent implements OnInit {
   selectStatus(num: number) {
     this.selectedStatus = num;
     if (this.selectedStatus === 0) {
-      this.askedQuestions = this.allAskedQuestions;
+      this.questionService.getOpenQuestions().valueChanges().subscribe(
+        (res) => {
+          // @ts-ignore
+          this.askedQuestions = res;
+        }
+      )
     }
     if (this.selectedStatus === 1) {
-      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.assigned);
+      this.questionService.getAssignedQuestions().valueChanges().subscribe(
+        (res) => {
+          // @ts-ignore
+          this.askedQuestions = res;
+        }
+      )
     }
 
     if (this.selectedStatus === 2) {
-      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.in_progress);
+      this.questionService.getInprogressQuestions().valueChanges().subscribe(
+        (res) => {
+          // @ts-ignore
+          this.askedQuestions = res;
+        }
+      )
     }
     if (this.selectedStatus === 3) {
-      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.completed);
+      this.questionService.getCompletedQuestions().valueChanges().subscribe(
+        (res) => {
+          // @ts-ignore
+          this.askedQuestions = res;
+        }
+      )
     }
     if (this.selectedStatus === 4) {
-      this.askedQuestions = this.allAskedQuestions.filter(question => question.status === constants.questionStatus.cancelled);
+      this.questionService.getCancelledQuestions().valueChanges().subscribe(
+        (res) => {
+          // @ts-ignore
+          this.askedQuestions = res;
+        }
+      )
     }
   }
 
@@ -167,11 +192,11 @@ export class AdminQuestionComponent implements OnInit {
       (res) => {
         // @ts-ignore
         this.studentService.currentStudent = res;
-        this.questionService.getAllQuestions().valueChanges().subscribe(
+        this.questionService.getOpenQuestions().valueChanges().subscribe(
           (res) => {
             // @ts-ignore
             this.askedQuestions = res;
-            this.askedQuestions = this.sortQuestion().reverse();
+            // this.askedQuestions = this.sortQuestion().reverse();
             // @ts-ignore
             this.allAskedQuestions = res;
             progressDialog.close();
