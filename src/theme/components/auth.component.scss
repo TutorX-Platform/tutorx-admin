@@ -229,6 +229,20 @@
                     }
                 }
             }
+
+          .add-tutor-sections{
+            padding: 16px;
+            border: 1px solid;
+            border-radius: 4px;
+            .title{
+              font: $body-base-bold;
+              margin: 0px 0px 16px 0px;
+            }
+            .sub-title{
+              font: $body-small-bold;
+              margin: 0px 0px 8px 0px;
+            }
+          }
         }
 
       .prof-picture-container{
