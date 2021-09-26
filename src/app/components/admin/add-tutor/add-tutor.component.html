@@ -15,82 +15,218 @@
         </div>
       </div>
       <form [formGroup]="tutorAddForm">
-        <div class="form" fxLayout="column" fxLayoutGap="8px">
-          <div>
-            <div class="label">Name</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="name" matInput type="text" class="other">
-            </mat-form-field>
-          </div>
-          <div>
-            <div class="label">Email address</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input [pattern]="emailPattern" formControlName="email" matInput type="email" class="other">
-            </mat-form-field>
-          </div>
-          <div>
-            <div class="label">Phone Number</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="phoneNumber" matInput type="number" class="other">
-            </mat-form-field>
-          </div>
-          <div>
-            <div class="label">Street</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="street" matInput type="text" class="other">
-            </mat-form-field>
-          </div>
-          <div>
-            <div class="label">City</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="city" matInput type="text" class="other">
-            </mat-form-field>
-          </div>
-          <div>
-            <div class="label">Country</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="country" matInput type="text" class="other">
-            </mat-form-field>
-          </div>
-          <div>
-            <div class="label">Postal Code</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="postalCode" matInput type="text" class="other">
-            </mat-form-field>
-          </div>
-          <div fxLayout="row" fxLayoutAlign="start center">
+        <div class="form" fxLayout="column" fxLayoutGap="16px">
+          <div class="add-tutor-sections" fxLayout="column" fxLayoutGap="8px">
+            <div class="title">
+              Main details(Mandatory)
+            </div>
             <div>
-              <div class="label">Subject</div>
-              <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
-                <mat-select formControlName="subjectList" (blur)="onSubjectBlur()">
-                  <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject}}</mat-option>
-                </mat-select>
+              <div class="label">Visible Name</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="visibleName" matInput type="text" class="other">
               </mat-form-field>
             </div>
             <div>
-              <div class="label">Subject Subcategory</div>
-              <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
-                <mat-select formControlName="subjectSubCategoryList" multiple>
-                  <mat-option *ngFor="let sub of subCategory" [value]="sub">{{sub}}</mat-option>
-                </mat-select>
+              <div class="label">Full Name</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="fullName" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Email address</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input [pattern]="emailPattern" formControlName="email" matInput type="email" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Phone Number</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="phoneNumber" matInput type="number" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Password</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="password" matInput type="password" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Confirm Password</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="confirmPassword" matInput type="password" class="other">
               </mat-form-field>
             </div>
           </div>
-          <div>
-            <div class="label">Password</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="password" matInput type="password" class="other">
-            </mat-form-field>
+
+          <div class="add-tutor-sections" fxLayout="column" fxLayoutGap="8px">
+            <div class="title">
+              Address
+            </div>
+            <div>
+              <div class="label">Street</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="street" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">City</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="city" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Country</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="country" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Postal Code</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="postalCode" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
           </div>
-          <div>
-            <div class="label">Confirm Password</div>
-            <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
-              <input formControlName="confirmPassword" matInput type="password" class="other">
-            </mat-form-field>
+
+          <div class="add-tutor-sections" fxLayout="column" fxLayoutGap="8px">
+            <div class="title">
+              Subjects
+            </div>
+            <div class="sub-title">
+              Subject 01(Mandatory)
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+              <div>
+                <div class="label">Subject</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectList1" (blur)="onSubjectBlur()">
+                    <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <div class="label">Subject Subcategory</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectSubCategoryList1" multiple>
+                    <mat-option *ngFor="let sub of subCategory" [value]="sub">{{sub}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="sub-title">
+              Subject 02
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+              <div>
+                <div class="label">Subject</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectList2" (blur)="onSubjectBlur()">
+                    <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <div class="label">Subject Subcategory</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectSubCategoryList2" multiple>
+                    <mat-option *ngFor="let sub of subCategory" [value]="sub">{{sub}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="sub-title">
+              Subject 03
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+              <div>
+                <div class="label">Subject</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectList3" (blur)="onSubjectBlur()">
+                    <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <div class="label">Subject Subcategory</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectSubCategoryList3" multiple>
+                    <mat-option *ngFor="let sub of subCategory" [value]="sub">{{sub}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="sub-title">
+              Subject 04
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+              <div>
+                <div class="label">Subject</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectList4" (blur)="onSubjectBlur()">
+                    <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <div class="label">Subject Subcategory</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectSubCategoryList4" multiple>
+                    <mat-option *ngFor="let sub of subCategory" [value]="sub">{{sub}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="sub-title">
+              Subject 05
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+              <div>
+                <div class="label">Subject</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectList5" (blur)="onSubjectBlur()">
+                    <mat-option *ngFor="let subject of subjects" [value]="subject">{{subject}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div>
+                <div class="label">Subject Subcategory</div>
+                <mat-form-field appearance="outline" class="my-form-field" style="width: 100%">
+                  <mat-select formControlName="subjectSubCategoryList5" multiple>
+                    <mat-option *ngFor="let sub of subCategory" [value]="sub">{{sub}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
           </div>
+
+          <div class="add-tutor-sections" fxLayout="column" fxLayoutGap="8px">
+            <div class="title">
+              Bank Details
+            </div>
+            <div>
+              <div class="label">Bank Name</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="bankName" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Branch</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="branch" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="label">Account Number</div>
+              <mat-form-field class="my-form-field" appearance="outline" style="width: 100%">
+                <input formControlName="accNo" matInput type="text" class="other">
+              </mat-form-field>
+            </div>
+          </div>
+
+
         </div>
       </form>
-      <button (click)="onDone()" mat-flat-button class="upload-new" color="primary">
+      <button (click)="onDone()" mat-flat-button class="upload-new" color="primary" style="margin-top: 16px">
         Done
       </button>
     </mat-dialog-content>

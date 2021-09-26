@@ -98,17 +98,29 @@ export class AddTutorComponent implements OnInit {
 
   createForm() {
     this.tutorAddForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+      visibleName: new FormControl('', Validators.required),
+      fullName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       phoneNumber: new FormControl('', Validators.required),
-      street: new FormControl('', Validators.required),
-      city: new FormControl('', Validators.required),
-      country: new FormControl('', Validators.required),
-      postalCode: new FormControl('', Validators.required),
+      street: new FormControl(''),
+      city: new FormControl(''),
+      country: new FormControl(''),
+      postalCode: new FormControl(''),
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required),
-      subjectList: new FormControl('', Validators.required),
-      subjectSubCategoryList: new FormControl('', Validators.required),
+      subjectList1: new FormControl('', Validators.required),
+      subjectList2: new FormControl(''),
+      subjectList3: new FormControl(''),
+      subjectList4: new FormControl(''),
+      subjectList5: new FormControl(''),
+      subjectSubCategoryList1: new FormControl('', Validators.required),
+      subjectSubCategoryList2: new FormControl(''),
+      subjectSubCategoryList3: new FormControl(''),
+      subjectSubCategoryList4: new FormControl(''),
+      subjectSubCategoryList5: new FormControl(''),
+      bankName: new FormControl(''),
+      branch: new FormControl(''),
+      accNo: new FormControl(''),
     });
   }
 
