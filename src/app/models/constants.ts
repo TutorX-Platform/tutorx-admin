@@ -88,7 +88,7 @@ export const routes = {
   sign_in: '/sign-in',
   student_q_pool: '/student/questions',
   student: '/student/',
-  admin: '/admin',
+  admin: '',
   questions: '/questions',
   dashboard: '/dashboard',
   refunds: '/refunds',
