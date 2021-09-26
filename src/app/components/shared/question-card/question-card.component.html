@@ -25,7 +25,8 @@
   </mat-card-content>
   <div class="divider-card"></div>
   <div fxLayout="row" fxLayoutAlign="space-between center" class="bottom-row">
-    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center" class="left-container">
+    <div *ngIf="lastAssignedTutorName!=''" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center"
+         class="left-container">
       <img *ngIf="lastAssignedTutorImage"
            [src]="lastAssignedTutorImage" alt="Avatar" class="avatar">
       <img *ngIf="lastAssignedTutorImage ===null || lastAssignedTutorImage ===undefined || lastAssignedTutorImage ===''"

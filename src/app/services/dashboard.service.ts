@@ -19,13 +19,13 @@ export class DashboardService {
 
   findRecentChats() {
     // @ts-ignore
-    const chatRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.chats, ref => ref.where('tutorId', '!=', ''));
+    const chatRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.chats, ref => ref.where('chatStatus', "in", [constants.chat_status.ongoing, constants.chat_status.openForTutors]).orderBy("tutorsCount").limit(10));
     return chatRef;
   }
 
   findRecentPayments() {
     // @ts-ignore
-    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments, ref => ref.where('fee', '!=', ''));
+    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments, ref => ref.orderBy('paidTime', "desc").limit(10));
     return paymentRef;
   }
 

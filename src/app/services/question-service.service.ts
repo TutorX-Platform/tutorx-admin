@@ -74,9 +74,33 @@ export class QuestionService {
     return questionRef;
   }
 
-  getAllQuestions() {
+  getOpenQuestions() {
     // @ts-ignore
-    const questionRef: AngularFirestoreDocument<Questions[]> = this.angularFirestoreService.collection(constants.collections.questions);
+    const questionRef: AngularFirestoreDocument<Questions[]> = this.angularFirestoreService.collection(constants.collections.questions, ref => ref.where('status', '==', constants.questionStatus.open).orderBy('sort', "desc").limit(10));
+    return questionRef;
+  }
+
+  getAssignedQuestions() {
+    // @ts-ignore
+    const questionRef: AngularFirestoreDocument<Questions[]> = this.angularFirestoreService.collection(constants.collections.questions, ref => ref.where('status', '==', constants.questionStatus.assigned).orderBy('sort', "desc").limit(10));
+    return questionRef;
+  }
+
+  getInprogressQuestions() {
+    // @ts-ignore
+    const questionRef: AngularFirestoreDocument<Questions[]> = this.angularFirestoreService.collection(constants.collections.questions, ref => ref.where('status', '==', constants.questionStatus.in_progress).orderBy('sort', "desc").limit(10));
+    return questionRef;
+  }
+
+  getCompletedQuestions() {
+    // @ts-ignore
+    const questionRef: AngularFirestoreDocument<Questions[]> = this.angularFirestoreService.collection(constants.collections.questions, ref => ref.where('status', '==', constants.questionStatus.completed).orderBy('sort', "desc").limit(10));
+    return questionRef;
+  }
+
+  getCancelledQuestions() {
+    // @ts-ignore
+    const questionRef: AngularFirestoreDocument<Questions[]> = this.angularFirestoreService.collection(constants.collections.questions, ref => ref.where('status', '==', constants.questionStatus.cancelled).orderBy('sort', "desc").limit(10));
     return questionRef;
   }
 
