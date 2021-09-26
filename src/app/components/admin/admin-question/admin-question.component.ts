@@ -33,8 +33,7 @@ export class AdminQuestionComponent implements OnInit {
 
   isAutoOpen = false;
   subjects = [
-    "Science", "English", "Maths", "Computer Science"
-  ]
+    "Computer Science", "Physics", "Mathematics", "Management"]
 
   states = [
     "Open", "Inprogress", "Assigned", "Cancelled", "Completed"
@@ -249,7 +248,6 @@ export class AdminQuestionComponent implements OnInit {
   }
 
   onSubjectFilter(value: any) {
-    let ask: Questions[] = [];
     let filteredQuestions: Questions[] = [];
 
     if (value === constants.subjectCodes.mathematics) {
@@ -277,8 +275,8 @@ export class AdminQuestionComponent implements OnInit {
     if (this.isManagement) {
       filteredQuestions.push(...this.allAskedQuestions.filter(ques => ques.subjectCategory === constants.subjectCodes.management))
     }
-
-    if (!this.isPhysics && !this.isManagement && !this.isCS && !this.isMaths) {
+    if ( !this.isPhysics && !this.isManagement && !this.isCS && !this.isMaths) {
+      this.askedQuestions = [];
       this.askedQuestions.push(...this.allAskedQuestions);
     } else {
       this.askedQuestions = [];

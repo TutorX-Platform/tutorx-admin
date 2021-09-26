@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import * as constants from '../../models/constants';
 import {AuthService} from "../../services/auth.service";
@@ -16,9 +16,10 @@ export class AuthComponent implements OnInit {
   emailPattern = constants.regexp_patterns.email;
 
   constructor(
-    private authService:AuthService,
+    private authService: AuthService,
     private dialog: MatDialog,
-    private formBuilder: FormBuilder,) { }
+    private formBuilder: FormBuilder,) {
+  }
 
 
   ngOnInit(): void {
@@ -50,9 +51,8 @@ export class AuthComponent implements OnInit {
   }
 
   onGoogleSignIn() {
-    // this.authService.googleAuth().then(r => {
-    //   this.dialogRef.close();
-    // });
+    this.authService.googleAuth().then(r => {
+    });
   }
 
 }

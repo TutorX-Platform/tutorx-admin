@@ -181,7 +181,7 @@ export class AuthService {
       questions: [],
       uniqueKey: this.utilService.generateUniqueKey(constants.userTypes.student),
       userId: user.uid,
-      role: constants.userTypes.student
+      role: constants.userTypes.admin
     }
     this.student = userData;
     return userRef.set(userData, {

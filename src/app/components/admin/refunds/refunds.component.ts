@@ -33,6 +33,7 @@ export class RefundsComponent implements OnInit {
   now = new Date();
   contactForm!: FormGroup;
   refunds: Refund[] = [];
+  allRefunds: Refund[] = [];
 
   numbers = [1, 2, 3];
   countries = [
@@ -54,6 +55,7 @@ export class RefundsComponent implements OnInit {
         this.dashboardService.findRefunds().valueChanges().subscribe(
           (res) => {
             this.refunds = res;
+            this.allRefunds = res;
             progressDialog.close();
           }
         )
@@ -68,6 +70,10 @@ export class RefundsComponent implements OnInit {
     dialogConfig.data = refundId;
     // dialogConfig.height = "810px";
     const dialogRef = this.dialog.open(MessageRequestComponent, dialogConfig);
+  }
+
+  onSortChange(value: string) {
+   this.refunds.reverse();
   }
 
 }

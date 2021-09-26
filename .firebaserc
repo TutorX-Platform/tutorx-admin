@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "tutorx-platform"
+  },
+  "targets": {
+    "tutorx-platform": {
+      "hosting": {
+        "admin": [
+          "tutetory-admin"
+        ]
+      }
+    }
   }
 }

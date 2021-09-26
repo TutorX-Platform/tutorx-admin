@@ -55,7 +55,7 @@
       </mat-form-field>
       <div class="label">Sort</div>
       <mat-form-field appearance="outline" class="my-form-field">
-        <mat-select [(ngModel)]="selectedValue" placeholder="Select">
+        <mat-select  (selectionChange)="onSortChange($event.value)" [(ngModel)]="selectedValue" placeholder="Select">
           <mat-option *ngFor="let state of states" [value]="state">
             {{state}}
           </mat-option>
