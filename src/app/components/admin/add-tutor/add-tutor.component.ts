@@ -101,6 +101,7 @@ export class AddTutorComponent implements OnInit {
       visibleName: new FormControl('', Validators.required),
       fullName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
       phoneNumber: new FormControl('', Validators.required),
       street: new FormControl(''),
       city: new FormControl(''),
