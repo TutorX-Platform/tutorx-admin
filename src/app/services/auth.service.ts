@@ -270,7 +270,7 @@ export class AuthService {
   }
 
 
-  saveTutor(email: string, userId: string, firstName: string, imageUrl: string, lastname: string, subject: string, subCategory: string[], phoneNumber: string, street: string, city: string, country: string, visibleName: string, bankName: string, branch: string, accountNumber: string) {
+  saveTutor(email: string, userId: string, firstName: string, imageUrl: string, lastname: string, subject: string, subCategory: string[], phoneNumber: string, street: string, city: string, country: string, visibleName: string, bankName: string, branch: string, accountNumber: string, description: string) {
     const userRef: AngularFirestoreDocument<any> = this.angularFirestoreService.doc(`${constants.collections.students}/${userId}`);
     const userData: any = {
       email: email,
@@ -295,13 +295,14 @@ export class AuthService {
       bankName: bankName,
       branchName: branch,
       accountNumber: accountNumber,
+      description: description
     }
     return userRef.set(userData, {
       merge: true
     });
   }
 
-  registerATutor(email: string, password: string, firstName: string, imageUrl: string, lastname: string, subCategory: string[], subject: string, phoneNumber: string, street: string, city: string, country: string, visibleName: string, bankName: string, branchName: string, accountNumber: string) {
+  registerATutor(email: string, password: string, firstName: string, imageUrl: string, lastname: string, subCategory: string[], subject: string, phoneNumber: string, street: string, city: string, country: string, visibleName: string, bankName: string, branchName: string, accountNumber: string, description: string) {
     const body = {
       'email': email,
       'password': password,
@@ -310,7 +311,7 @@ export class AuthService {
     return this.http.post(constants.firebase_create_user_url, body, {}).subscribe(
       (res) => {
         // @ts-ignore
-        this.saveTutor(email, res.localId, firstName, imageUrl, lastname, subject, subCategory, phoneNumber, street, city, country, visibleName, bankName, branchName, accountNumber);
+        this.saveTutor(email, res.localId, firstName, imageUrl, lastname, subject, subCategory, phoneNumber, street, city, country, visibleName, bankName, branchName, accountNumber, description);
         // @ts-ignore
         this.studentService.createEarningSectionForTutor(res.localId).then();
         this.utilService.openDialog(systemMessages.adminTitles.tutorAddedSuccess, systemMessages.adminMessages.tutorAddedSuccess, constants.messageTypes.success).afterOpened().subscribe()

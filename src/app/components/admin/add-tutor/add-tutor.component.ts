@@ -150,6 +150,7 @@ export class AddTutorComponent implements OnInit {
     const bankName = this.tutorAddForm.value.bankName;
     const branchName = this.tutorAddForm.value.branch;
     const accNo = this.tutorAddForm.value.accNo;
+    const description = this.tutorAddForm.value.description;
     let image;
     if (this.imageUrl === '') {
       image = null;
@@ -157,7 +158,7 @@ export class AddTutorComponent implements OnInit {
       image = this.imageUrl;
     }
     // @ts-ignore
-    this.authService.registerATutor(email, password, firstname, image, '', subCategory, subject, phoneNumber, street, city, country, visibleName, bankName, branchName, accNo).add(() => {
+    this.authService.registerATutor(email, password, firstname, image, '', subCategory, subject, phoneNumber, street, city, country, visibleName, bankName, branchName, accNo, description).add(() => {
       this.dialog.closeAll()
     });
   }
