@@ -138,13 +138,17 @@ export class AddTutorComponent implements OnInit {
   onDone() {
     const email = this.tutorAddForm.value.email;
     const password = this.tutorAddForm.value.password;
-    const firstname = this.tutorAddForm.value.name;
-    const subCategory = this.tutorAddForm.value.subjectSubCategoryList;
-    const subject = this.tutorAddForm.value.subjectList;
+    const firstname = this.tutorAddForm.value.fullName;
+    const subCategory = ['subjectSubCategoryList'];
+    const subject = 'this.tutorAddForm.value.subjectList';
     const phoneNumber = this.tutorAddForm.value.phoneNumber;
     const street = this.tutorAddForm.value.street;
     const city = this.tutorAddForm.value.city;
     const country = this.tutorAddForm.value.country;
+    const visibleName = this.tutorAddForm.value.visibleName;
+    const bankName = this.tutorAddForm.value.bankName;
+    const branchName = this.tutorAddForm.value.branch;
+    const accNo = this.tutorAddForm.value.accNo;
     let image;
     if (this.imageUrl === '') {
       image = null;
@@ -152,8 +156,9 @@ export class AddTutorComponent implements OnInit {
       image = this.imageUrl;
     }
     // @ts-ignore
-    this.authService.registerATutor(email, password, firstname, image, '', subCategory, subject, phoneNumber, street, city, country);
-    this.dialog.closeAll();
+    this.authService.registerATutor(email, password, firstname, image, '', subCategory, subject, phoneNumber, street, city, country, visibleName, bankName, branchName, accNo).add(() => {
+      this.dialog.closeAll()
+    });
   }
 
 }

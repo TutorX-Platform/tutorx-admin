@@ -30,4 +30,5 @@ export interface Questions {
   isQuoteSend: boolean;
   isQuoteApproved: boolean;
   byLoggedUser: boolean;
+  questionNumber: string;
 }
