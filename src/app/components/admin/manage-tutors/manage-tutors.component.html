@@ -8,7 +8,7 @@
   <div class="main-container" fxLayout="row">
     <div class="request-container" fxLayout="column" fxLayoutGap="24px">
       <div *ngFor="let tutor of tutors">
-        <div fxLayout="row" class="request-card" fxLayoutAlign="space-between center" (click)="onCardClick()">
+        <div fxLayout="row" class="request-card" fxLayoutAlign="space-between center" (click)="onCardClick(tutor.userId)">
           <div fxLayout="row">
             <div fxLayout="column" fxLayoutAlign="start start">
               <img *ngIf="tutor.profileImage" [src]="tutor.profileImage" alt="Avatar" class="avatar">

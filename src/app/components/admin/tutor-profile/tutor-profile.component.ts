@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {StudentService} from "../../../services/student-service.service";
+import {Tutor} from "../../../models/tutor";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-tutor-profile',
@@ -9,7 +12,31 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class TutorProfileComponent implements OnInit {
 
   rating = 4;
-  countries=[
+  tutor: Tutor = {
+    accNo: "",
+    bankName: "",
+    branchName: "",
+    city: "",
+    country: "",
+    description: 0,
+    email: "",
+    engagedJobs: [],
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    postalCode: "",
+    profileImage: "",
+    rating: 0,
+    street: "",
+    subCategory: [],
+    subjects: [],
+    tasksCompleted: 0,
+    totalEarnings: 0,
+    uniqueKey: "",
+    userId: "",
+    visibleName: ""
+  }
+  countries = [
     {
       id: 1,
       name: 'Sri Lanka'
@@ -22,10 +49,20 @@ export class TutorProfileComponent implements OnInit {
 
   // @ts-ignore
   tutorAddForm: FormGroup;
-  constructor() { }
+  uid = '';
+
+  constructor(private studentService: StudentService, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(
+      map => {
+        // @ts-ignore
+        this.uid = map.get('id');
+      }
+    );
     this.createForm();
+    this.getCurrentUserProfile();
   }
 
   createForm() {
@@ -55,6 +92,27 @@ export class TutorProfileComponent implements OnInit {
       branch: new FormControl(''),
       accNo: new FormControl(''),
     });
+  }
+
+  getCurrentUserProfile() {
+    this.studentService.findStudentById(this.uid).subscribe(
+      (res) => {
+        // @ts-ignore
+        this.tutor = res;
+        this.tutorAddForm.controls.visibleName.setValue(this.tutor.visibleName);
+        this.tutorAddForm.controls.fullName.setValue(this.tutor.firstName);
+        this.tutorAddForm.controls.email.setValue(this.tutor.email);
+        this.tutorAddForm.controls.street.setValue(this.tutor.street);
+        this.tutorAddForm.controls.city.setValue(this.tutor.city);
+        this.tutorAddForm.controls.country.setValue(this.tutor.country);
+        this.tutorAddForm.controls.postalCode.setValue(this.tutor.postalCode);
+        this.tutorAddForm.controls.phoneNumber.setValue(this.tutor.phoneNumber);
+        this.tutorAddForm.controls.description.setValue(this.tutor.description);
+        this.tutorAddForm.controls.accNo.setValue(this.tutor.accNo);
+        this.tutorAddForm.controls.bankName.setValue(this.tutor.bankName);
+        this.tutorAddForm.controls.branch.setValue(this.tutor.branchName);
+      }
+    )
   }
 
 }
