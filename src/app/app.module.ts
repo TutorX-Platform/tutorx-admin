@@ -61,6 +61,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MessageRequestComponent } from './components/admin/message-request/message-request.component';
 import { StudentPaymentDetailedViewComponent } from './components/admin/student-payment-detailed-view/student-payment-detailed-view.component';
 import { TutorPaymentsDetailedViewComponent } from './components/admin/tutor-payments-detailed-view/tutor-payments-detailed-view.component';
+import { TutorProfileComponent } from './components/admin/tutor-profile/tutor-profile.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { TutorPaymentsDetailedViewComponent } from './components/admin/tutor-pay
     CustomDropzonePreviewComponent,
     MessageRequestComponent,
     StudentPaymentDetailedViewComponent,
-    TutorPaymentsDetailedViewComponent
+    TutorPaymentsDetailedViewComponent,
+    TutorProfileComponent
 
   ],
   imports: [
