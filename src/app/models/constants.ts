@@ -98,6 +98,7 @@ export const routes = {
   chat: '/chat',
   pay: '/pay',
   paySuccess: '/pay-success',
+  tutor_profile: 'tutor-profile',
   tutor_payment_details: '/tutor-payment'
 }
 

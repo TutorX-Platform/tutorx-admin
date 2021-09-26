@@ -137,6 +137,6 @@ export class ManageTutorsComponent implements OnInit {
   }
 
   onCardClick() {
-    this.router.navigate(['' + constants.routes.tutor_payment_details], {skipLocationChange: true});
+    this.router.navigate(['' + constants.routes.tutor_profile], {skipLocationChange: true});
   }
 }
