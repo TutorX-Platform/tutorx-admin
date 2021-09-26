@@ -181,7 +181,7 @@ export class AuthService {
       questions: [],
       uniqueKey: this.utilService.generateUniqueKey(constants.userTypes.student),
       userId: user.uid,
-      role: constants.userTypes.student
+      role: constants.userTypes.admin
     }
     this.student = userData;
     return userRef.set(userData, {
@@ -270,11 +270,12 @@ export class AuthService {
   }
 
 
-  saveTutor(email: string, userId: string, firstName: string, imageUrl: string, lastname: string, subject: string, subCategory: string[], phoneNumber: string, street: string, city: string, country: string) {
+  saveTutor(email: string, userId: string, firstName: string, imageUrl: string, lastname: string, subject: string, subCategory: string[], phoneNumber: string, street: string, city: string, country: string, visibleName: string, bankName: string, branch: string, accountNumber: string) {
     const userRef: AngularFirestoreDocument<any> = this.angularFirestoreService.doc(`${constants.collections.students}/${userId}`);
     const userData: any = {
       email: email,
       firstName: firstName,
+      visibleName: visibleName,
       isVerified: "",
       lastName: lastname,
       profileImage: imageUrl,
@@ -291,13 +292,16 @@ export class AuthService {
       rating: 0,
       totalEarnings: 0,
       tasksCompleted: 0,
+      bankName: bankName,
+      branchName: branch,
+      accountNumber: accountNumber,
     }
     return userRef.set(userData, {
       merge: true
     });
   }
 
-  registerATutor(email: string, password: string, firstName: string, imageUrl: string, lastname: string, subCategory: string[], subject: string, phoneNumber: string, street: string, city: string, country: string) {
+  registerATutor(email: string, password: string, firstName: string, imageUrl: string, lastname: string, subCategory: string[], subject: string, phoneNumber: string, street: string, city: string, country: string, visibleName: string, bankName: string, branchName: string, accountNumber: string) {
     const body = {
       'email': email,
       'password': password,
@@ -306,7 +310,7 @@ export class AuthService {
     return this.http.post(constants.firebase_create_user_url, body, {}).subscribe(
       (res) => {
         // @ts-ignore
-        this.saveTutor(email, res.localId, firstName, imageUrl, lastname, subject, subCategory, phoneNumber, street, city, country);
+        this.saveTutor(email, res.localId, firstName, imageUrl, lastname, subject, subCategory, phoneNumber, street, city, country, visibleName, bankName, branchName, accountNumber);
         // @ts-ignore
         this.studentService.createEarningSectionForTutor(res.localId).then();
         this.utilService.openDialog(systemMessages.adminTitles.tutorAddedSuccess, systemMessages.adminMessages.tutorAddedSuccess, constants.messageTypes.success).afterOpened().subscribe()

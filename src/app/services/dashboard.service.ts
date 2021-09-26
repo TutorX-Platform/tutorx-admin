@@ -7,6 +7,7 @@ import {ChatMsg} from "../models/chat-msg";
   providedIn: 'root'
 })
 export class DashboardService {
+  allTutors: string[] = [];
 
   constructor(private angularFirestoreService: AngularFirestore,) {
   }
@@ -19,7 +20,7 @@ export class DashboardService {
 
   findRecentChats() {
     // @ts-ignore
-    const chatRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.chats, ref => ref.where('chatStatus', "in", [constants.chat_status.ongoing, constants.chat_status.openForTutors]).orderBy("tutorsCount").limit(10));
+    const chatRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.chats, ref => ref.where('chatStatus', "in", [constants.chat_status.ongoing, constants.chat_status.openForTutors]).orderBy("createdDate", "desc").limit(10));
     return chatRef;
   }
 
@@ -47,7 +48,7 @@ export class DashboardService {
 
   findRefunds() {
     // @ts-ignore
-    const refundRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.refunds);
+    const refundRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.refunds, ref => ref.orderBy('time', 'desc').limit(10));
     return refundRef;
   }
 
@@ -64,7 +65,13 @@ export class DashboardService {
 
   findPayments() {
     // @ts-ignore
-    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments, ref => ref.where('fee', '!=', ''));
+    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments, ref => ref.orderBy('paidTime', 'desc').limit(10));
+    return paymentRef;
+  }
+
+  findPaymentsByTutor(tutors: string[]) {
+    // @ts-ignore
+    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments, ref => ref.where('tutorName', 'in', tutors).orderBy('paidTime', 'desc').limit(10));
     return paymentRef;
   }
 
@@ -78,5 +85,11 @@ export class DashboardService {
     // @ts-ignore
     const tutorRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.tutorEarnings);
     return tutorRef;
+  }
+
+  getPaymentsByMonthForTutor(month: number) {
+    // @ts-ignore
+    const paymentRef: AngularFirestoreDocument<Unknown> = this.angularFirestoreService.collection(constants.collections.payments, ref => ref.where('month', '==', month).limit(10));
+    return paymentRef;
   }
 }

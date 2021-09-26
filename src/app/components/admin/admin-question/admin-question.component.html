@@ -45,22 +45,23 @@
             [isPublicPool]="true"
             [isAutoOpen]="isAutoOpen"
             [byLoggedUser]="q.byLoggedUser"
+            [questionNumber]="q.questionNumber"
           ></app-question-card>
         </div>
       </div>
     </div>
     <div fxLayout="column" class="right-container">
-      <mat-form-field appearance="outline" class="my-form-field">
-        <span matPrefix>
-          <mat-icon>search</mat-icon> &nbsp;&nbsp;
-        </span>
-        <input matInput type="search" [formControl]="searchControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+      <!--      <mat-form-field appearance="outline" class="my-form-field">-->
+      <!--        <span matPrefix>-->
+      <!--          <mat-icon>search</mat-icon> &nbsp;&nbsp;-->
+      <!--        </span>-->
+      <!--        <input matInput type="search" [formControl]="searchControl" [matAutocomplete]="auto">-->
+      <!--        <mat-autocomplete #auto="matAutocomplete">-->
+      <!--          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
+      <!--            {{option}}-->
+      <!--          </mat-option>-->
+      <!--        </mat-autocomplete>-->
+      <!--      </mat-form-field>-->
       <div fxLayout="row" fxLayoutAlign="start center" class="label">Sort by</div>
       <div fxLayout="row" fxLayoutAlign="start center">
         <form [formGroup]="contactForm" class="form">
@@ -84,18 +85,18 @@
             </div>
           </div>
         </div>
-        <div fxLayout="column" fxLayoutAlign="start start" class="subjects-container">
-          <div class="subjects-title">Status</div>
-          <div class="subject-wrapper" fxLayout="row wrap" fxLayoutGap="8px grid">
-            <div fxFlex.gt-sm="50%" fxFlex.lt-md="100%" *ngFor="let state of states">
-              <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
-                <mat-checkbox color="primary">
-                </mat-checkbox>
-                <div class="subjectss">{{state}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!--        <div fxLayout="column" fxLayoutAlign="start start" class="subjects-container">-->
+        <!--          <div class="subjects-title">Status</div>-->
+        <!--          <div class="subject-wrapper" fxLayout="row wrap" fxLayoutGap="8px grid">-->
+        <!--            <div fxFlex.gt-sm="50%" fxFlex.lt-md="100%" *ngFor="let state of states">-->
+        <!--              <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">-->
+        <!--                <mat-checkbox color="primary">-->
+        <!--                </mat-checkbox>-->
+        <!--                <div class="subjectss">{{state}}</div>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
 
     </div>

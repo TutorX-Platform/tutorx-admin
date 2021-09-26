@@ -31,13 +31,13 @@ export class ChatServiceService {
     let data: ChatMsg = {
       sort: sortTime,
       senderAvatar: this.studentService.currentStudent.profileImage,
-      senderName: this.studentService.currentStudent.firstName,
+      senderName: 'Admin',
       isTutorJoinMessage: false,
       isAttachment: isAttachment,
       message: message,
       senderEmail: this.auth.student.email,
       senderId: this.auth.student.userId,
-      sentBy: this.auth.student.firstName,
+      sentBy: 'Admin',
       time: sortTime
     }
     this.angularFirestoreService.collection(constants.collections.message).doc(messageId).collection(constants.collections.chats).add(data);
