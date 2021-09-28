@@ -61,7 +61,7 @@ const routes: Routes = [
         component: TutorPaymentsDetailedViewComponent
       },
       {
-        path: 'tutor-profile',
+        path: 'tutor-profile/:id',
         component: TutorProfileComponent
       },
       {
