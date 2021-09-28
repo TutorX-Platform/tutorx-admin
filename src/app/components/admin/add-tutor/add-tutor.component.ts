@@ -126,7 +126,7 @@ export class AddTutorComponent implements OnInit {
   }
 
   onSubjectBlur() {
-    const subject = this.tutorAddForm.value.subjectList;
+    const subject = this.tutorAddForm.value.subjectList1;
     console.log(subject, 'hi');
     if (subject === 'Maths') {
       this.subCategory = this.subCategoryMaths;
