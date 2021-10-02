@@ -20,10 +20,14 @@ export class AddTutorComponent implements OnInit {
   // @ts-ignore
   tutorAddForm: FormGroup;
   emailPattern = constants.regexp_patterns.email;
-  subjects: string[] = ['Maths', 'Computer Science', 'Geography'];
+  subjects = constants.subjects;
   subCategoryMaths: string[] = ['math1', 'math2'];
   subCategoryScience: string[] = ['com1', 'com2'];
-  subCategory: string[] = [];
+  subCategory1: string[] = [];
+  subCategory2: string[] = [];
+  subCategory3: string[] = [];
+  subCategory4: string[] = [];
+  subCategory5: string[] = [];
   imageUrl = '';
   // @ts-ignore
   file: File;
@@ -125,23 +129,132 @@ export class AddTutorComponent implements OnInit {
     });
   }
 
-  onSubjectBlur() {
-    const subject = this.tutorAddForm.value.subjectList1;
-    console.log(subject, 'hi');
-    if (subject === 'Maths') {
-      this.subCategory = this.subCategoryMaths;
+  onSubjectBlur(num: number) {
+    let subject = null;
+    if( num === 1){
+      // @ts-ignore
+      this.tutorAddForm.get('subjectSubCategoryList1').setValue('');
+      subject = this.tutorAddForm.value.subjectList1;
+      this.subCategory1 = [];
+      if (subject === constants.subjectCodes.mathematics) {
+        this.subCategory1 = constants.mathsSubjects;
+      } else if (subject === constants.subjectCodes.engineering) {
+        this.subCategory1 = constants.engineeringSubjects;
+      } else if (subject === constants.subjectCodes.computer_science) {
+        this.subCategory1 = constants.csSubjects;
+      } else if (subject === constants.subjectCodes.management) {
+        this.subCategory1 = constants.managementSubjects;
+      } else if (subject === constants.subjectCodes.physics) {
+        this.subCategory1 = constants.physicsSubjects;
+      }
+    } else if( num === 2){
+      // @ts-ignore
+      this.tutorAddForm.get('subjectSubCategoryList2').setValue('');
+      subject = this.tutorAddForm.value.subjectList2;
+      this.subCategory2 = [];
+      if (subject === constants.subjectCodes.mathematics) {
+        this.subCategory2 = constants.mathsSubjects;
+      } else if (subject === constants.subjectCodes.engineering) {
+        this.subCategory2 = constants.engineeringSubjects;
+      } else if (subject === constants.subjectCodes.computer_science) {
+        this.subCategory2 = constants.csSubjects;
+      } else if (subject === constants.subjectCodes.management) {
+        this.subCategory2 = constants.managementSubjects;
+      } else if (subject === constants.subjectCodes.physics) {
+        this.subCategory2 = constants.physicsSubjects;
+      }
+    } else if( num === 3){
+      // @ts-ignore
+      this.tutorAddForm.get('subjectSubCategoryList3').setValue('');
+      subject = this.tutorAddForm.value.subjectList3;
+      this.subCategory3 = [];
+      if (subject === constants.subjectCodes.mathematics) {
+        this.subCategory3 = constants.mathsSubjects;
+      } else if (subject === constants.subjectCodes.engineering) {
+        this.subCategory3 = constants.engineeringSubjects;
+      } else if (subject === constants.subjectCodes.computer_science) {
+        this.subCategory3 = constants.csSubjects;
+      } else if (subject === constants.subjectCodes.management) {
+        this.subCategory3 = constants.managementSubjects;
+      } else if (subject === constants.subjectCodes.physics) {
+        this.subCategory3 = constants.physicsSubjects;
+      }
+    } else if( num === 4){
+      // @ts-ignore
+      this.tutorAddForm.get('subjectSubCategoryList4').setValue('');
+      subject = this.tutorAddForm.value.subjectList4;
+      this.subCategory4 = [];
+      if (subject === constants.subjectCodes.mathematics) {
+        this.subCategory4 = constants.mathsSubjects;
+      } else if (subject === constants.subjectCodes.engineering) {
+        this.subCategory4 = constants.engineeringSubjects;
+      } else if (subject === constants.subjectCodes.computer_science) {
+        this.subCategory4 = constants.csSubjects;
+      } else if (subject === constants.subjectCodes.management) {
+        this.subCategory4 = constants.managementSubjects;
+      } else if (subject === constants.subjectCodes.physics) {
+        this.subCategory4 = constants.physicsSubjects;
+      }
+    } else if( num === 5){
+      // @ts-ignore
+      this.tutorAddForm.get('subjectSubCategoryList5').setValue('');
+      subject = this.tutorAddForm.value.subjectList5;
+      this.subCategory5 = [];
+      if (subject === constants.subjectCodes.mathematics) {
+        this.subCategory5 = constants.mathsSubjects;
+      } else if (subject === constants.subjectCodes.engineering) {
+        this.subCategory5 = constants.engineeringSubjects;
+      } else if (subject === constants.subjectCodes.computer_science) {
+        this.subCategory5 = constants.csSubjects;
+      } else if (subject === constants.subjectCodes.management) {
+        this.subCategory5 = constants.managementSubjects;
+      } else if (subject === constants.subjectCodes.physics) {
+        this.subCategory5 = constants.physicsSubjects;
+      }
     }
-    if (subject === 'Computer Science') {
-      this.subCategory = this.subCategoryScience;
-    }
+
   }
 
   onDone() {
     const email = this.tutorAddForm.value.email;
     const password = this.tutorAddForm.value.password;
     const firstname = this.tutorAddForm.value.fullName;
-    const subCategory = ['subjectSubCategoryList'];
-    const subject = 'this.tutorAddForm.value.subjectList';
+    let subCategory: string[] = [];
+    subCategory = (this.tutorAddForm.value.subjectSubCategoryList1);
+    if(this.tutorAddForm.value.subjectSubCategoryList2 !== null && this.tutorAddForm.value.subjectSubCategoryList2 !== '' && this.tutorAddForm.value.subjectSubCategoryList2 !== undefined) {
+      // @ts-ignore
+      this.tutorAddForm.value.subjectSubCategoryList2.forEach( (cat) => {
+        subCategory.push(cat);
+      })
+    }
+    if(this.tutorAddForm.value.subjectSubCategoryList3 !== null && this.tutorAddForm.value.subjectSubCategoryList3 !== '' && this.tutorAddForm.value.subjectSubCategoryList3 !== undefined) {
+      // @ts-ignore
+      this.tutorAddForm.value.subjectSubCategoryList3.forEach( (cat) => {
+        subCategory.push(cat);
+      })
+    }
+    if(this.tutorAddForm.value.subjectSubCategoryList4 !== null && this.tutorAddForm.value.subjectSubCategoryList4 !== '' && this.tutorAddForm.value.subjectSubCategoryList4 !== undefined) {
+      // @ts-ignore
+      this.tutorAddForm.value.subjectSubCategoryList4.forEach( (cat) => {
+        subCategory.push(cat);
+      })
+    }
+    if(this.tutorAddForm.value.subjectSubCategoryList5 !== null && this.tutorAddForm.value.subjectSubCategoryList5 !== '' && this.tutorAddForm.value.subjectSubCategoryList5 !== undefined) {
+      // @ts-ignore
+      this.tutorAddForm.value.subjectSubCategoryList5.forEach( (cat) => {
+        subCategory.push(cat);
+      })
+    }
+    // subCategory.push(this.tutorAddForm.value.subjectSubCategoryList2);
+    // subCategory.push(this.tutorAddForm.value.subjectSubCategoryList3);
+    // subCategory.push(this.tutorAddForm.value.subjectSubCategoryList4);
+    // subCategory.push(this.tutorAddForm.value.subjectSubCategoryList5);
+    let subject: string[] = [];
+    subject.push(this.tutorAddForm.value.subjectList1);
+    subject.push(this.tutorAddForm.value.subjectList2);
+    subject.push(this.tutorAddForm.value.subjectList3);
+    subject.push(this.tutorAddForm.value.subjectList4);
+    subject.push(this.tutorAddForm.value.subjectList5);
     const phoneNumber = this.tutorAddForm.value.phoneNumber;
     const street = this.tutorAddForm.value.street;
     const city = this.tutorAddForm.value.city;

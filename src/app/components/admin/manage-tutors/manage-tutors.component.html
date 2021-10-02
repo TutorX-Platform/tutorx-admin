@@ -34,7 +34,7 @@
                   <div>{{tutor.description}}</div>
                 </div>
               </div>
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px" style="margin-top: 24px;"
+              <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="8px grid" style="margin-top: 24px;"
                    fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start" fxLayoutGap.lt-md="8px">
                 <div class="c-chip c-chip--subjects invert-false">{{tutor.subjects}}</div>
                 <div *ngFor="let subCategory of tutor.subCategory" class="c-chip c-chip--subjects invert-false">
