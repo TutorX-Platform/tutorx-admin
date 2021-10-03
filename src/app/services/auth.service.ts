@@ -24,6 +24,7 @@ export class AuthService {
   isStudentSet = false;
   isLoggedIn = false;
   student: Student = {
+    isAdmin: false,
     email: "",
     firstName: "",
     isVerified: "",
@@ -32,7 +33,7 @@ export class AuthService {
     questions: [],
     uniqueKey: "",
     userId: "",
-    role: "",
+    role: ""
   };
 
   constructor(public angularFirestoreService: AngularFirestore,
@@ -81,8 +82,6 @@ export class AuthService {
         localStorage.setItem(constants.localStorageKeys.user, JSON.stringify(credentials.user));
         `JSON.parse(<string>localStorage.getItem(constants.localStorageKeys.user));`
         this.userData = credentials.user;
-        // @ts-ignore
-        this.mailService.sendEmail(credentials.user.email).subscribe();
         const progressDialog = this.dialog.open(ProgressDialogComponent, constants.getProgressDialogData());
         this.roleBasedRouting(credentials.user.uid, progressDialog);
         // @ts-ignore
@@ -94,7 +93,7 @@ export class AuthService {
         // @ts-ignore
         this.student.userId = credentials.user?.uid;
         this.isStudentSet = true;
-        this.SetUserData(credentials.user, this.student.firstName);
+        // this.SetUserData(credentials.user, this.student.firstName);
       }
     }));
   }
@@ -102,6 +101,7 @@ export class AuthService {
   updateStudentData(user: User) {
     const studentRef: AngularFirestoreDocument<Student> = this.angularFirestoreService.doc(constants.collections.students + `/${user.uid}`);
     const student: Student = {
+      isAdmin: false,
       email: user.email,
       firstName: user.displayName,
       isVerified: user.emailVerified,
@@ -110,7 +110,7 @@ export class AuthService {
       questions: [],
       uniqueKey: this.generateUniqueKey(),
       userId: user.uid,
-      role: constants.userTypes.student,
+      role: constants.userTypes.student
     }
     studentRef.set(student);
   }
@@ -142,7 +142,7 @@ export class AuthService {
         this.isLoggedIn = true;
         this.SendVerificationMail();
         // @ts-ignore
-        this.SetUserData(result.user, firstName);
+        // this.SetUserData(result.user, firstName);
         // @ts-ignore
         this.roleBasedRouting(result.user.uid, progressDialog);
       }).catch((error) => {
@@ -173,6 +173,7 @@ export class AuthService {
     this.userData = user;
     const userRef: AngularFirestoreDocument<any> = this.angularFirestoreService.doc(`${constants.collections.students}/${user.uid}`);
     const userData: Student = {
+      isAdmin: false,
       email: user.email,
       firstName: firstName,
       isVerified: "",
@@ -217,6 +218,7 @@ export class AuthService {
 
   resetStudent() {
     const resetUser: Student = {
+      isAdmin: false,
       email: "",
       firstName: "",
       isVerified: "",
@@ -225,7 +227,7 @@ export class AuthService {
       questions: [],
       uniqueKey: "",
       userId: "",
-      role: '',
+      role: ''
     }
 
     this.student = resetUser;
@@ -238,7 +240,7 @@ export class AuthService {
           // @ts-ignore
           const student: Student = res;
           this.student = student;
-          if (student.role === constants.userTypes.admin) {
+          if (student.isAdmin) {
             this.ngZone.run(() => {
               this.isLoggedIn = true;
               if (progressDialog) {
@@ -249,6 +251,8 @@ export class AuthService {
           } else {
             this.utilService.openDialog(systemMessages.adminTitles.loginPermissionDenied, systemMessages.adminMessages.loginPermissionDenied, constants.messageTypes.warning).afterOpened().subscribe();
             this.mailService.unAuthorizedAccessToAdminScreen(this.student.email).subscribe();
+            // window.location.reload()
+            progressDialog.close();
           }
         } else {
           progressDialog.close();

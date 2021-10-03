@@ -87,4 +87,8 @@ export class QuestionCardComponent implements OnInit {
     dialogConfig.width = "100%";
     this.dialog.open(AddQuestionComponent, dialogConfig);
   }
+
+  deleteQuestion() {
+    this.questionService.deleteQuestionByStudent(this.id);
+  }
 }
