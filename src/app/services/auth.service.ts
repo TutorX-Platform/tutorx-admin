@@ -315,9 +315,13 @@ export class AuthService {
     return this.http.post(constants.firebase_create_user_url, body, {}).subscribe(
       (res) => {
         // @ts-ignore
-        this.saveTutor(email, res.localId, firstName, imageUrl, lastname, subject, subCategory, phoneNumber, street, city, country, visibleName, bankName, branchName, accountNumber, description);
+        this.saveTutor(email, res.localId, firstName, imageUrl, lastname, subject, subCategory, phoneNumber, street, city, country, visibleName, bankName, branchName, accountNumber, description).then(() => {
+          // this.mailService.ma
+        });
         // @ts-ignore
-        this.studentService.createEarningSectionForTutor(res.localId).then();
+        this.studentService.createEarningSectionForTutor(res.localId).then(() => {
+          this.mailService.sendMail("You have an account", email, constants.createTutorMail(firstName, email, password), constants.mailTemplates.createTutor).subscribe()
+        });
         this.utilService.openDialog(systemMessages.adminTitles.tutorAddedSuccess, systemMessages.adminMessages.tutorAddedSuccess, constants.messageTypes.success).afterOpened().subscribe()
       }
     );

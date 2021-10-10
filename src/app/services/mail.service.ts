@@ -10,16 +10,14 @@ export class MailService {
   constructor(private http: HttpClient) {
   }
 
-  if() {
 
-  }
-
-  sendEmail(email: string) {
+  sendMail(subject: string, reciever: string, replacement: any, fileName: string) {
     const emailData = {
       'fromEmail': constants.email_data.senderEmail,
-      'subject': constants.email_data.subject,
-      'text': constants.email_data.message,
-      'toEmail': email,
+      'subject': subject,
+      'toEmail': reciever,
+      'fileName': fileName,
+      'replacement': replacement
     }
     return this.http.post(constants.backend_url.concat(constants.backend_api_resource.email), emailData);
   }
