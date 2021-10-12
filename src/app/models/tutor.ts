@@ -23,4 +23,5 @@ export interface Tutor {
   accNo:string;
   bankName:string;
   branchName:string;
+  isTutor:boolean;
 }
