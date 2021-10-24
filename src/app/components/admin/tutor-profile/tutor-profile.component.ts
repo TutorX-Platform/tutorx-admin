@@ -13,6 +13,7 @@ export class TutorProfileComponent implements OnInit {
 
   rating = 4;
   tutor: Tutor = {
+    fee: 0,
     isTutor: true,
     accNo: "",
     bankName: "",

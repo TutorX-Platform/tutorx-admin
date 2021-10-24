@@ -146,7 +146,6 @@ export class AddQuestionComponent implements OnInit {
         console.log(this.subOptions);
       }
     }
-    console.log(this.subOptions);
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
