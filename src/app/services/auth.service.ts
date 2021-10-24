@@ -299,7 +299,8 @@ export class AuthService {
       bankName: bankName,
       branchName: branch,
       accountNumber: accountNumber,
-      description: description
+      description: description,
+      isTutor: true
     }
     return userRef.set(userData, {
       merge: true
