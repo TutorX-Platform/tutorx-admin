@@ -38,13 +38,17 @@ export class MessageRequestComponent implements OnInit {
   }
 
   onClose() {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   onDone() {
     this.dashboardService.approveRefund(this.data, this.form.value.amount, this.form.value.message).then(
       () => {
-        this.dialogRef.close();
+        const data = {
+          amount: this.form.value.amount,
+          status: true
+        }
+        this.dialogRef.close(data);
       }
     );
   }

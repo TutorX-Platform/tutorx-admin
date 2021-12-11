@@ -9,4 +9,8 @@ export interface ChatMsg {
   sentBy: string;
   isAttachment: boolean;
   sort: number;
+  isValidQuote:boolean;
+  isQuote:boolean;
+  attachmentExtension:string;
+  attachmentLink:string;
 }

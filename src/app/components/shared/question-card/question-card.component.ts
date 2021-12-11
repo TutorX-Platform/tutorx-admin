@@ -8,6 +8,7 @@ import {QuestionService} from "../../../services/question-service.service";
 import {AuthService} from "../../../services/auth.service";
 import {StudentService} from "../../../services/student-service.service";
 import {Attachment} from "../../../models/Attachment";
+import {UtilService} from "../../../services/util-service.service";
 
 @Component({
   selector: 'app-question-card',
@@ -44,6 +45,7 @@ export class QuestionCardComponent implements OnInit {
               private dialog: MatDialog,
               private questionService: QuestionService,
               private studentService: StudentService,
+              private utilService: UtilService,
               private authService: AuthService) {
   }
 
@@ -89,6 +91,14 @@ export class QuestionCardComponent implements OnInit {
   }
 
   deleteQuestion() {
-    this.questionService.deleteQuestionByStudent(this.id);
+    this.utilService.openDialog('Please confirm', 'Are you want to delete this question', constants.messageTypes.confirmation).afterClosed().subscribe(
+      (res) => {
+        if (res) {
+          this.questionService.deleteQuestionByStudent(this.id);
+
+        }
+      }
+    );
+
   }
 }

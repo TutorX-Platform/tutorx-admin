@@ -29,6 +29,7 @@ export class ChatServiceService {
 
   sendMessage(messageId: string, message: string, sortTime: number, isAttachment: boolean) {
     let data: ChatMsg = {
+      attachmentExtension: "", attachmentLink: "", isQuote: false, isValidQuote: false,
       sort: sortTime,
       senderAvatar: this.studentService.currentStudent.profileImage,
       senderName: 'Admin',
@@ -59,6 +60,7 @@ export class ChatServiceService {
       tutorProfile: this.auth.student.profileImage
     }
     let data: ChatMsg = {
+      attachmentExtension: "", attachmentLink: "", isQuote: false, isValidQuote: false,
       sort: sortTime,
       senderAvatar: this.studentService.currentStudent.profileImage,
       senderName: this.studentService.currentStudent.firstName,
@@ -68,7 +70,7 @@ export class ChatServiceService {
       senderEmail: '',
       senderId: '',
       sentBy: '',
-      time: sortTime,
+      time: sortTime
     }
     this.angularFirestoreService.collection(constants.collections.chats).doc(chatId).update(joinTutor);
     this.angularFirestoreService.collection(constants.collections.message).doc(chatId).collection(constants.collections.chats).add(data);
@@ -82,6 +84,7 @@ export class ChatServiceService {
 
   tutorLeftChat(chatId: string, time: number) {
     let data: ChatMsg = {
+      attachmentExtension: "", attachmentLink: "", isQuote: false, isValidQuote: false,
       sort: time,
       senderAvatar: this.studentService.currentStudent.profileImage,
       senderName: this.studentService.currentStudent.firstName,
@@ -91,7 +94,7 @@ export class ChatServiceService {
       senderEmail: '',
       senderId: '',
       sentBy: '',
-      time: time,
+      time: time
     }
 
     const leaveTutor = {
@@ -111,6 +114,7 @@ export class ChatServiceService {
 
   sendQuoteMessage(chatId: string, time: number, amount: number) {
     let data: ChatMsg = {
+      attachmentExtension: "", attachmentLink: "", isQuote: false, isValidQuote: false,
       sort: time,
       senderAvatar: '',
       senderName: '',
@@ -120,13 +124,14 @@ export class ChatServiceService {
       senderEmail: '',
       senderId: '',
       sentBy: '',
-      time: time,
+      time: time
     }
     this.angularFirestoreService.collection(constants.collections.message).doc(chatId).collection(constants.collections.chats).add(data);
   }
 
   sendApproveQuoteMessage(chatId: string, time: number, amount: number) {
     let data: ChatMsg = {
+      attachmentExtension: "", attachmentLink: "", isQuote: false, isValidQuote: false,
       sort: time,
       senderAvatar: '',
       senderName: '',
@@ -136,13 +141,14 @@ export class ChatServiceService {
       senderEmail: '',
       senderId: '',
       sentBy: '',
-      time: time,
+      time: time
     }
     this.angularFirestoreService.collection(constants.collections.message).doc(chatId).collection(constants.collections.chats).add(data);
   }
 
   sendPaidQuoteMessage(chatId: string, time: number, amount: number) {
     let data: ChatMsg = {
+      attachmentExtension: "", attachmentLink: "", isQuote: false, isValidQuote: false,
       sort: time,
       senderAvatar: '',
       senderName: '',
@@ -152,9 +158,29 @@ export class ChatServiceService {
       senderEmail: '',
       senderId: '',
       sentBy: '',
-      time: time,
+      time: time
     }
     this.angularFirestoreService.collection(constants.collections.message).doc(chatId).collection(constants.collections.chats).add(data);
+  }
+
+  refundRequestChat(chatId: string, sortTime: number) {
+    let data: ChatMsg = {
+      isValidQuote: false,
+      isQuote: false,
+      attachmentExtension: "",
+      attachmentLink: "",
+      sort: sortTime,
+      senderAvatar: this.studentService.currentStudent.profileImage,
+      senderName: this.studentService.currentStudent.firstName,
+      isTutorJoinMessage: true,
+      isAttachment: false,
+      message: `Admin approved this refund`,
+      senderEmail: '',
+      senderId: '',
+      sentBy: '',
+      time: sortTime
+    }
+    return this.angularFirestoreService.collection(constants.collections.message).doc(chatId).collection(constants.collections.chats).add(data);
   }
 
 

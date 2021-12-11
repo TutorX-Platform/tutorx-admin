@@ -32,6 +32,7 @@ export class DashboardService {
 
   sendAdminMonitoringChatMsg(time: number, chatId: string) {
     let data: ChatMsg = {
+      attachmentExtension: "", attachmentLink: "", isQuote: false, isValidQuote: false,
       sort: time,
       senderAvatar: '',
       senderName: '',
@@ -41,7 +42,7 @@ export class DashboardService {
       senderEmail: '',
       senderId: '',
       sentBy: '',
-      time: time,
+      time: time
     }
     this.angularFirestoreService.collection(constants.collections.message).doc(chatId).collection(constants.collections.chats).add(data);
   }

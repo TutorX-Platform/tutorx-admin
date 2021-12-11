@@ -8,6 +8,9 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {UtilService} from "../../../services/util-service.service";
 import * as systemMessages from '../../../models/system-messages';
 import {MessageRequestComponent} from "../message-request/message-request.component";
+import {Router} from "@angular/router";
+import {ChatServiceService} from "../../../services/chat-service.service";
+import {StudentService} from "../../../services/student-service.service";
 
 @Component({
   selector: 'app-refunds',
@@ -18,9 +21,12 @@ export class RefundsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private dashboardService: DashboardService,
     private dialog: MatDialog,
-    private utilService: UtilService
+    private chatService: ChatServiceService,
+    private utilService: UtilService,
+    private studentService: StudentService
   ) {
   }
 
@@ -56,6 +62,7 @@ export class RefundsComponent implements OnInit {
           (res) => {
             this.refunds = res;
             this.allRefunds = res;
+            console.log(this.allRefunds);
             progressDialog.close();
           }
         )
@@ -63,17 +70,35 @@ export class RefundsComponent implements OnInit {
     )
   }
 
-  onApprove(refundId: string) {
+  onApprove(refundId: string,refund:Refund) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = '650px';
     dialogConfig.data = refundId;
     // dialogConfig.height = "810px";
     const dialogRef = this.dialog.open(MessageRequestComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      (res) => {
+        if (res) {
+          console.log(res);
+          this.utilService.getTimeFromTimeAPI().subscribe(
+            (res1) => {
+              // @ts-ignore
+              this.chatService.refundRequestChat(refundId, res1.time).then()
+              this.studentService.deductTutorWhenRefund(refund.tutorId, res.amount).then()
+            });
+        }
+      }
+    )
+
   }
 
   onSortChange(value: string) {
-   this.refunds.reverse();
+    this.refunds.reverse();
+  }
+
+  onViewChat(qid: string) {
+    this.router.navigate(['' + constants.routes.chat + '/' + qid], {skipLocationChange: true});
   }
 
 }

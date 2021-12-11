@@ -31,10 +31,10 @@
             <div class="di"></div>
             <div class="buttons" fxLayout="column" fxLayoutAlign="center stretch">
               <div>
-                <button mat-raised-button class="button">Message</button>
+                <button mat-raised-button class="button" (click)="onViewChat(refund.questionId)">View Chat</button>
               </div>
               <div *ngIf="!refund.isApproved">
-                <button (click)="onApprove(refund.id)" mat-raised-button class="button button--white">Approve</button>
+                <button (click)="onApprove(refund.id,refund)" mat-raised-button class="button button--white">Approve</button>
               </div>
               <div *ngIf="refund.isApproved">
                 <button mat-raised-button class="button button--white">Approved</button>
